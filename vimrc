@@ -213,7 +213,6 @@ set nobackup "设置不生成备份文件
 " vim-powerline
 set laststatus=2            " always have status-line'
 "let g:Powerline_symbols = 'fancy'
-"set statusline=%F%m%r%h%w\ %{&ff}\ %Y\ [ascii:%b\ hex:0x\%02.2B]\ [%{(&fenc\ ==\ \"\"?&enc:&fenc).(&bomb?\",BOM\":\"\")}]\ %=%l/%L,%v\ %p%%
 
 " allow backspacing over everything in insert mode
 set backspace=2 "设置退格键可用
@@ -231,7 +230,7 @@ set softtabstop=4
 set expandtab               " Use spaces instead of tabs
                         
 set list
-set listchars=tab:\|\ ,     " 显示Tab符，使用一高亮竖线代替
+"set listchars=tab:\|\ ,     " 显示Tab符，使用一高亮竖线代替
 
 " Indent related
 " http://vimcdoc.sourceforge.net/doc/indent.html
@@ -318,36 +317,6 @@ endif
 
 set tags=tags;
 
-" -- cscope --
-let g:autocscope_menus=0
-" Use quickfix window to show cscope results
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-"'csto' 被设为 0，cscope 数据库先 被搜索，搜索失败的情况下在搜索标签文件 
-"设定了 'cscopetag'，这样所有的 :tag 命令就会实际上调用 :cstag。这包括 :tag、Ctrl-] 及 vim -t。
-"结果是一般的 tag 命令不仅搜索由 ctags 产生的标签文 件，同时也搜索 cscope 数据库,但是好像有bug,二者共存时有的无法搜索
-if has("cscope") 
-    set csprg=/usr/bin/cscope
-    " Use both cscope and ctag
-    set cscopetag
-    " Show msg when cscope db added
-    set cscopeverbose
-    " Use cscope for definition search first
-    set cscopetagorder=0
-endif
-
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-_>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-" 解决cscope与tag共存时ctrl+]有时不正常的bug
-nmap <C-]> :tj <C-R>=expand("<cword>")<CR><CR>
-
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -412,19 +381,6 @@ au BufRead,BufNewFile * setfiletype txt
      \     exe "normal g'\"" | 
      \ endif
 
-" 自动更新最后修改时间
-function! AutoUpdateTheLastUpdateInfo()
-    let s:original_pos = getpos(".")
-    let s:regexp = "^\\s*\\([#\\\"\\*]\\|\\/\\/\\)\\s\\?[lL]ast \\([uU]pdate\\|[cC]hange\\):"
-    let s:lu = search(s:regexp)
-    if s:lu != 0
-        let s:update_str = matchstr(getline(s:lu), s:regexp)
-        call setline(s:lu, s:update_str . strftime("%Y-%m-%d %H:%M:%S", localtime()))
-        call setpos(".", s:original_pos)
-    endif
-endfunction
-"autocmd BufWritePost *.{h,hpp,c,cpp} call AutoUpdateTheLastUpdateInfo()
-"autocmd BufNewFile *.{h,hpp,c,cpp} exec 'call append(0, "\/\/ Last Update:" . strftime("%Y-%m-%d %H:%M:%S", localtime()))'
 
 " NERDTree options
 " Auto change the root directory
@@ -528,6 +484,21 @@ let g:ctrlp_extensions=['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 "let g:indent_guides_enable_on_vim_startup=1
 "let g:indent_guides_guide_size=1
 
-
-
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+                                                      
+"--------------------------------------------------   
+" =>  tabular                                   
+"--------------------------------------------------   
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+ 
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+                                                      
