@@ -58,8 +58,6 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle begin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible               " be iMproved
-
 filetype off                " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -69,43 +67,41 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " vim-scripts repos
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  美化、扩展
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "hybrid 主题
 Bundle 'w0ng/vim-hybrid'
 "主题颜色
 Bundle 'Color-Sampler-Pack'
-
 "记录增删       就算退出编辑器, 还能还原已经修改过的文件, 方便得复制还原 
 "Bundle 'YankRing.vim'
-
 " bufexplorer   \BE
 Bundle "git://github.com/vim-scripts/bufexplorer.zip.git"
 "丰富的状态栏
 Bundle 'Lokaltog/vim-powerline'
-
+"fast to get 
+Bundle 'Lokaltog/vim-easymotion' 
 " Under linux need exec 'dos2unix ~/.vim/bundle/QFixToggle/plugin/qfixtoggle.vim'
 Bundle 'QFixToggle'
 " Visually display indent levels in Vim
-" 
 Bundle 'mutewinter/vim-indent-guides'
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   便捷功能
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "显示最近打开过的文件
 Bundle 'mru.vim'
 "Bundle 'The-NERD-tree'
 Bundle 'scrooloose/nerdtree'
+"Syntax check that runs files through external syntax checkers
+Bundle 'scrooloose/syntastic'
+"comment in a easy way     like c.vim
+Bundle 'scrooloose/nerdcommenter' 
+
 " Displays tags in a window, ordered by class etc, i used it instead of taglist
 Bundle 'majutsushi/tagbar'
 Bundle 'kien/ctrlp.vim'
-
 "查找工程文件
 Bundle 'grep.vim'
 " c 与 h 文件互换
@@ -116,56 +112,45 @@ Bundle 'kana/vim-smartinput'
 "ctags -R --fields=+lS
 " Echo the function declaration in the command line for C/C++
 Bundle 'echofunc.vim'
-
 "  Ultimate auto completion system for Vim
 Bundle 'Shougo/neocomplcache'
-
 "Bundle 'CmdlineComplete'
 Bundle 'xptemplate'
-
 Bundle 'txt.vim'
 " Improved C++ STL syntax highlighting
 Bundle 'STL-improved'
-
 "F2 and C-F2
 "Bundle 'VisualMarks.vim'
 "Bundle 'https://github.com/vim-scripts/visualMarks.vim.git'
 Bundle 'cpp.vim'
-
- 
 "Bundle 'xolox/vim-easytags'
-
-"Syntax check that runs files through external syntax checkers
-Bundle 'scrooloose/syntastic'
 "格式化编辑
 Bundle 'godlygeek/tabular'
-
 "Visualize Vim undo tree
 Bundle 'sjl/gundo.vim'
-
 "Text objects based on indent levels
 Bundle 'michaeljsmith/vim-indent-object'
 "   块操作
 Bundle 'coderifous/textobj-word-column.vim'
-
+"Bundle 'VisualMarks.vim'
+"Bundle 'https://github.com/vim-scripts/visualMarks.vim.git'
+"Bundle 'xolox/vim-easytags'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "语言编辑支持
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"写标签语言的利器             surround.vim
-Bundle 'tpope/vim-surround.git'
-
 " c++ IDE 
 Bundle 'c.vim'
-
 "Python 插件 
 Bundle 'Pydiction'
 Bundle  'klen/python-mode'
-
+"写标签语言的利器             surround.vim
+Bundle 'tpope/vim-surround.git'
 "一键编译
 Bundle 'xuhdev/SingleCompile'
-
+"Bundle 'vim-ruby/vim-ruby' "For  Ruby
+"Bundle 'tpope/vim-dispatch' "ruby   compile
+"Bundle 'tpope/vim-fugitive' "git 
+"Bundle 'tpope/vim-rails' "for rails
 " non github repos
 " ...
 filetype plugin indent on   " required! 
@@ -457,24 +442,18 @@ let g:pymode_doc_key = 'K'
 "single compile
 nmap <F5> :SCCompile<cr>
 nmap <F7> :SCCompileRun<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SingleCompile_usequickfix = 0
 "--------------------------------------------------
 " => Ctrlp
 "--------------------------------------------------
-
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_clear_cache_on_exit=0
 let g:ctrlp_cache_dir=$HOME.'/.vim/.cache/ctrlp'
 let g:ctrlp_extensions=['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 "--------------------------------------------------
 " => Indent Guides
 "--------------------------------------------------
-
 "if !has('gui_running')
     let g:indent_guides_auto_colors=0
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=237
@@ -484,8 +463,6 @@ let g:ctrlp_extensions=['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 "let g:indent_guides_enable_on_vim_startup=1
 "let g:indent_guides_guide_size=1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-                                                      
 "--------------------------------------------------   
 " =>  tabular                                   
 "--------------------------------------------------   
@@ -501,4 +478,18 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
-                                                      
+"--------------------------------------------------   
+" =>  easymotion                                        
+"--------------------------------------------------   
+let g:EasyMotion_leader_key = '<Leader>'               
+
+"--------------------------------------------------   
+" =>   ruby                                        
+"--------------------------------------------------   
+"let ruby_operators =1
+"let ruby_fold =1
+"let ruby_space_errors = 1
+
+"let g:rubycomplete_buffer_loading = 1
+"let g:rubycomplete_classes_in_global = 1
+"let g:rubycomplete_rails = 1
