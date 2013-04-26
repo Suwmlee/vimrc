@@ -126,10 +126,10 @@ Bundle 'Pydiction'
 Bundle 'klen/python-mode'
 " Ruby 
 Bundle 'vim-ruby/vim-ruby' 
-"写标签语言的利器       
-Bundle 'tpope/vim-surround.git'
+"写标签语言的利器    cs  repeate
+Bundle 'tpope/vim-surround'
 "ruby   compile
-Bundle 'tpope/vim-dispatch' 
+"Bundle 'tpope/vim-dispatch' 
 "git 
 "Bundle 'tpope/vim-fugitive' 
 "for rails
@@ -343,6 +343,7 @@ let g:pymode_lint_checker="pyflakes,mccabe"
 "auto-checking on every save is disabled.
 let g:pymode_lint_write=0
 "enable breakpoint
+let g:pymode_breakpoint=1
 let g:pymode_breakpoint_key='<leader>b'
 
 "--------------------------------------------------
@@ -350,7 +351,7 @@ let g:pymode_breakpoint_key='<leader>b'
 "--------------------------------------------------
 nmap <F5> :SCCompile<cr>
 nmap <F7> :SCCompileRun<cr>
-let g:SingleCompile_usequickfix = 0
+"let g:SingleCompile_usequickfix = 0
 
 "--------------------------------------------------
 " => Ctrlp
@@ -398,9 +399,9 @@ let g:EasyMotion_leader_key = '<Leader>'
 "--------------------------------------------------   
 " =>   ruby                                        
 "--------------------------------------------------   
-let ruby_operators =1
-let ruby_fold =1
-let ruby_space_errors = 1
+let g:ruby_operators =1
+let g:ruby_fold =1
+let g:ruby_space_errors = 1
 
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
