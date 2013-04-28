@@ -51,10 +51,14 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  美化、扩展
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"hybrid 主题
-Bundle 'w0ng/vim-hybrid'
 "主题颜色
-Bundle 'Color-Sampler-Pack'
+Bundle 'altercation/vim-colors-solarized'
+"hybrid 主题
+Bundle 'tomasr/molokai'
+"Bundle 'w0ng/vim-hybrid'
+"Bundle 'Color-Sampler-Pack'
+"Bundle 'jonathanfilip/vim-lucius'
+
 "记录增删       就算退出编辑器, 还能还原已经修改过的文件, 方便得复制还原 
 "Bundle 'YankRing.vim'
 " bufexplorer   \BE
@@ -115,6 +119,9 @@ Bundle 'coderifous/textobj-word-column.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "语言编辑支持
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"gdb in vim need python 2.6+
+"Bundle 'skibyte/gdb-from-vim'
+"Bundle 'pyclewn'
 "一键编译
 Bundle 'xuhdev/SingleCompile'
 " c++ IDE 
@@ -141,90 +148,71 @@ filetype plugin indent on   " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colorscheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"colorscheme codeschool
+"colorscheme solarized
+colorscheme molokai
+set background=dark              " Set background
+set t_Co=256                     " Use 256 colors
+set guifont=Consolas:h11:b:cANSI " 字体设置
+
 " MAX windows
-au GUIEnter * simalt ~x
-set history=500     "保留历史记录
-set guioptions-=T   " 取消菜单栏
-
-"colorscheme desert
-set background=dark " Set background
-if !has('gui_running')
-    set t_Co=256 " Use 256 colors
-endif
-colorscheme hybrid " Load a colorscheme
-set guifont=Consolas:h11
-
+" au GUIEnter * simalt ~x
+set lines=30 columns=100         " 设置窗口大小
+set history=500                  " 保留历史记录
+set guioptions-=T                " 取消菜单栏
 " Enable syntax highlighting
-syntax enable "打开语法高亮
+syntax enable                    " 打开语法高亮
 syntax on
 
 set number
-set autochdir               " 自动切换当前目录为当前文件所在的目录
 " Set to auto read when a file is changed from the outside
 set autoread
 " 下面两行改变备份文件存放路径
-"set backupdir=~/.vim/backup
-"set directory=~/.vim/backup
-set nobackup "设置不生成备份文件
-" vim-powerline
-set laststatus=2            " always have status-line'
-"let g:Powerline_symbols = 'fancy'
+" set backupdir=~/.vim/backup
+" set directory=~/.vim/backup
+set nobackup                     " 设置不生成备份文件
+
 " allow backspacing over everything in insert mode
-set backspace=2 "设置退格键可用
+set backspace=2                  " 设置退格键可用
 " 光标到达行尾或者行首时，特定键继续移动转至下一行或上一行
-set wrap    "设置自动换行
-set linebreak "整词换行，与自动换行搭配使用
-set scrolloff=5 "在光标接近底端或顶端时，自动下滚或上滚
-set showtabline=2 "设置显是显示标签栏
+set wrap                         " 设置自动换行
+set linebreak                    " 整词换行，与自动换行搭配使用
+set scrolloff=5                  " 在光标接近底端或顶端时，自动下滚或上滚
+set showtabline=2                " 设置显是显示标签栏
 " Tab related
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set expandtab               " Use spaces instead of tabs
+set expandtab                    " Use spaces instead of tabs
 set list
-"set listchars=tab:\|\ ,     " 显示Tab符，使用一高亮竖线代替
+" set listchars=tab:\|\ , 显示Tab符，使用一高亮竖线代替
 set cinoptions=g0,:0,N-s,(0
-set autoindent      " always set autoindenting on
+set autoindent                   " always set autoindenting on
 set smartindent
-set mps+=<:>        " 让<>可以使用%跳转
-set hid             " allow to change buffer without saving 
-set shortmess=atI   " shortens messages to avoid 'press a key' prompt 
-set lazyredraw      " do not redraw while executing macros (much faster)
+set mps+=<:>                     " 让<>可以使用%跳转
+set hid                          " allow to change buffer without saving
+set shortmess=atI                " shortens messages to avoid 'press a key' prompt
+set lazyredraw                   " do not redraw while executing macros (much faster)
 " Set Number format to null(default is octal) , when press CTRL-A on number
 " like 007, it would not become 010
 set nf=
 
 " In Visual Block Mode, cursor can be positioned where there is no actual character
 set ve=block
-set ignorecase  " Set search/replace pattern to ignore case 
-set smartcase   " Set smartcase mode on, If there is upper case character in the search patern, the 'ignorecase' option will be override.
-set showcmd     " display incomplete commands
-set incsearch   " do incremental searching
-set hlsearch    " highlight search
-set magic       " Enable magic matching
-set showmatch   " show matching paren
-set wildmenu    " 增强模式中的命令行自动完成操作  
-set mouse=a    " Enable mouse usage (all modes) in terminals
-set foldmethod=indent "set default foldmethod
+set ignorecase                   " Set search/replace pattern to ignore case
+set smartcase                    " 保持字符串的内容，替换字符串的大小写风格. 
+set showcmd                      " display incomplete commands
+set incsearch                    " do incremental searching
+set hlsearch                     " highlight search
+set magic                        " Enable magic matching
+set showmatch                    " show matching paren
+set wildmenu                     " 增强模式中的命令行自动完成操作
+set mouse=a                      " Enable mouse usage (all modes) in terminals
+set foldmethod=indent            " set default foldmethod
+set autochdir                    " 自动切换当前目录为当前文件所在的目录
 set tags=tags;
-
-" Switching between buffers. 
-nnoremap <C-h> <C-W>h  
-nnoremap <C-j> <C-W>j  
-nnoremap <C-k> <C-W>k  
-nnoremap <C-l> <C-W>l  
-inoremap <C-h> <Esc><C-W>h  
-inoremap <C-j> <Esc><C-W>j  
-inoremap <C-k> <Esc><C-W>k  
-inoremap <C-l> <Esc><C-W>l  
-" Set Up and Down non-linewise
-noremap <Up> gk
-noremap <Down> gj
-" open ctags entries in a new tab
-nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
-nnoremap <silent> <F3> :Grep<CR>
-"Fast remove highlight search
-nmap <silent> <leader><cr> :noh<cr>
 
 " 每行超过80个的字符用下划线标示
 au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%81v/
@@ -237,6 +225,28 @@ au BufRead,BufNewFile * setfiletype txt
     \ if line("'\"") > 0 && line("'\"") <= line("$") | 
      \     exe "normal g'\"" | 
      \ endif
+
+"--------------------------------------------------
+" => keymap
+"--------------------------------------------------
+" Switching between buffers. 
+nnoremap <C-h> <C-W>h  
+nnoremap <C-j> <C-W>j  
+nnoremap <C-k> <C-W>k  
+nnoremap <C-l> <C-W>l  
+inoremap <C-h> <Esc><C-W>h  
+inoremap <C-j> <Esc><C-W>j  
+inoremap <C-k> <Esc><C-W>k  
+inoremap <C-l> <Esc><C-W>l  
+" Set Up and Down non-linewise
+noremap <Up> gk
+noremap <Down> gj
+
+" open ctags entries in a new tab
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+nnoremap <silent> <F3> :Grep<CR>
+"Fast remove highlight search
+nmap <silent> <leader><cr> :noh<cr>
 
 "--------------------------------------------------
 " => neocomplcache
@@ -276,6 +286,12 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+"--------------------------------------------------
+" => vim-powerline
+"--------------------------------------------------
+set laststatus=2            " always have status-line'
+"let g:Powerline_symbols = 'fancy'
 
 "--------------------------------------------------
 " => NERDTree options   Tagbar options
@@ -399,13 +415,13 @@ let g:EasyMotion_leader_key = '<Leader>'
 "--------------------------------------------------   
 " =>   ruby                                        
 "--------------------------------------------------   
-let g:ruby_operators =1
-let g:ruby_fold =1
-let g:ruby_space_errors = 1
+let g:ruby_operators                 = 1
+let g:ruby_fold                      = 1
+let g:ruby_space_errors              = 1
 
-let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_buffer_loading    = 1
 let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
+let g:rubycomplete_rails             = 1
 
 "--------------------------------------------------   
 " =>定义Debug函数，用来调试程序                                  
@@ -427,6 +443,10 @@ endfunc
 " F6 一键Debug
 map <F6> :call Debug()<CR>
 imap <F6> <ESC>:call Debug()<CR>
+
+"--------------------------------------------------   
+" => GDB                                  
+"--------------------------------------------------   
 
 "--------------------------------------------------   
 " =>  END                                 
