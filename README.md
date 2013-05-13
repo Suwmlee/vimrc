@@ -7,44 +7,45 @@ Install and Setup
 download vim from Internet
 
 ###2.Install git
-[git for windows](https://code.google.com/p/msysgit/downloads/list)<br /> 
-git for linux 
+
+[git for windows](https://code.google.com/p/msysgit/downloads/list)
+
+git for linux <br /> 
 In ubuntu: sudo apt-get install git 
 
 ###3.Install vundle
 
-     ```
-     $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-     ```
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
 ###4.Install myvimrc
 
-     ```
-     $ git clone https://github.com/wanminlee/myvimrc.git  vimrc
-     ```
+    git clone https://github.com/wanminlee/myvimrc.git  vimrc
 
 ###5.Change vimrc
 
 $mv ~/.vimrc ~/oldvim
+
 $mv vimrc/vimrc ~/.vimrc
 
 ###6.BundleInstall 
 
 In vim 
+
 :BundleInstall
 
 
 ###7.delete ^M
-:e ++ff=dos  (vim>7.2)
 
+:e ++ff=dos  (vim>7.2)
 
 KeyMaps
 ------------------------------
 
-F5 : single compile 
-F6 : gdb    (-g -o)
-F7 : single compile run
-F8 : NERDTree and Tagbar
+F5 : single compile <br />
+F6 : gdb    (-g -o)<br />
+F7 : single compile run<br />
+F8 : NERDTree and Tagbar<br />
 
-<leader>be : bufexplorer
+<leader>be : bufexplorer<br />
 :map  (for all keymaps)
 
