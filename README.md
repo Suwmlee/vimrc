@@ -34,7 +34,7 @@ In vim
 :BundleInstall
 
 
-###7.delete ^M
+###7.Delete ^M
 
 :e ++ff=dos  (vim>7.2)
 
@@ -46,6 +46,5 @@ F6 : gdb    (-g -o)<br />
 F7 : single compile run<br />
 F8 : NERDTree and Tagbar<br />
 
-<leader>be : bufexplorer<br />
 :map  (for all keymaps)
 
