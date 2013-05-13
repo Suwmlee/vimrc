@@ -3,7 +3,7 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set  diffexpr
+" set  diffexpr   WINDOWS 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 set diffexpr=MyDiff()
 function MyDiff()
@@ -151,15 +151,18 @@ filetype plugin indent on   " required!
 " colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "colorscheme codeschool
-"colorscheme solarized
-colorscheme molokai
+colorscheme solarized
+"colorscheme molokai
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" normal settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark              " Set background
 set t_Co=256                     " Use 256 colors
-set guifont=Consolas:h11:b:cANSI " 字体设置
+set guifont=Consolas:h11:b:cANSI " 字体设置  windows
 
 " MAX windows
 " au GUIEnter * simalt ~x
-set lines=30 columns=100         " 设置窗口大小
+set lines=28 columns=120         " 设置窗口大小
 set history=500                  " 保留历史记录
 set guioptions-=T                " 取消菜单栏
 " Enable syntax highlighting
@@ -212,7 +215,7 @@ set wildmenu                     " 增强模式中的命令行自动完成操作
 set mouse=a                      " Enable mouse usage (all modes) in terminals
 set foldmethod=indent            " set default foldmethod
 set autochdir                    " 自动切换当前目录为当前文件所在的目录
-set tags=tags;
+set tags=tags;                   "ctags
 
 " 每行超过80个的字符用下划线标示
 au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%81v/
@@ -244,7 +247,7 @@ noremap <Down> gj
 
 " open ctags entries in a new tab
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
-nnoremap <silent> <F3> :Grep<CR>
+"nnoremap <silent> <F3> :Grep<CR>
 "Fast remove highlight search
 nmap <silent> <leader><cr> :noh<cr>
 
@@ -282,10 +285,10 @@ inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+"inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 "--------------------------------------------------
 " => vim-powerline
@@ -444,9 +447,6 @@ endfunc
 map <F6> :call Debug()<CR>
 imap <F6> <ESC>:call Debug()<CR>
 
-"--------------------------------------------------   
-" => GDB                                  
-"--------------------------------------------------   
 
 "--------------------------------------------------   
 " =>  END                                 
