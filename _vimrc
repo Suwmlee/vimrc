@@ -53,7 +53,6 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "主题颜色
 Bundle 'altercation/vim-colors-solarized'
-"hybrid 主题
 Bundle 'tomasr/molokai'
 "Bundle 'w0ng/vim-hybrid'
 "Bundle 'Color-Sampler-Pack'
@@ -65,18 +64,18 @@ Bundle 'tomasr/molokai'
 Bundle "git://github.com/vim-scripts/bufexplorer.zip.git"
 "丰富的状态栏
 Bundle 'Lokaltog/vim-powerline'
-"fast to get 
+"fast to get      \w  \f 
 Bundle 'Lokaltog/vim-easymotion' 
 " Under linux need exec 'dos2unix ~/.vim/bundle/QFixToggle/plugin/qfixtoggle.vim'
 Bundle 'QFixToggle'
-" Visually display indent levels in Vim
+" Visually display indent levels in Vim   colors
 Bundle 'mutewinter/vim-indent-guides'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   便捷功能
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "显示最近打开过的文件
-Bundle 'mru.vim'
+"Bundle 'mru.vim'
 "Bundle 'The-NERD-tree'
 Bundle 'scrooloose/nerdtree'
 "Syntax check that runs files through external syntax checkers
@@ -85,11 +84,13 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter' 
 " Displays tags in a window, ordered by class etc, i used it instead of taglist
 Bundle 'majutsushi/tagbar'
+"search c-p
 Bundle 'kien/ctrlp.vim'
 "查找工程文件
-Bundle 'grep.vim'
+"Bundle 'mileszs/ack.vim'
+Bundle 'EasyGrep'
 " c 与 h 文件互换
-Bundle 'a.vim'
+"Bundle 'a.vim'
 " Deal with pairs of punctuations such as (), [], {}, and so on
 Bundle 'kana/vim-smartinput'
 " Preview the definition of variables or functions in a preview window
@@ -99,7 +100,7 @@ Bundle 'echofunc.vim'
 "  Ultimate auto completion system for Vim
 Bundle 'Shougo/neocomplcache'
 "Bundle 'CmdlineComplete'
-Bundle 'xptemplate'
+"Bundle 'xptemplate'
 Bundle 'txt.vim'
 " Improved C++ STL syntax highlighting
 Bundle 'STL-improved'
@@ -107,12 +108,12 @@ Bundle 'STL-improved'
 "Bundle 'VisualMarks.vim'
 Bundle 'cpp.vim'
 "Bundle 'xolox/vim-easytags'
-"格式化编辑
+" tabular /|
 Bundle 'godlygeek/tabular'
 "Visualize Vim undo tree
-Bundle 'sjl/gundo.vim'
+"Bundle 'sjl/gundo.vim'
 "Text objects based on indent levels
-Bundle 'michaeljsmith/vim-indent-object'
+"Bundle 'michaeljsmith/vim-indent-object'
 "vic  dic  visual block
 Bundle 'coderifous/textobj-word-column.vim'
 
@@ -136,7 +137,7 @@ Bundle 'vim-ruby/vim-ruby'
 "写标签语言的利器    cs  repeate
 Bundle 'tpope/vim-surround'
 "ruby   compile
-"Bundle 'tpope/vim-dispatch' 
+Bundle 'tpope/vim-dispatch' 
 "git 
 "Bundle 'tpope/vim-fugitive' 
 "for rails
@@ -194,9 +195,9 @@ set list
 set cinoptions=g0,:0,N-s,(0
 set autoindent                   " always set autoindenting on
 set smartindent
-set mps+=<:>                     " 让<>可以使用%跳转
+"set mps+=<:>                     " 让<>可以使用%跳转
 set hid                          " allow to change buffer without saving
-set shortmess=atI                " shortens messages to avoid 'press a key' prompt
+"set shortmess=atI                " shortens messages to avoid 'press a key' prompt
 set lazyredraw                   " do not redraw while executing macros (much faster)
 " Set Number format to null(default is octal) , when press CTRL-A on number
 " like 007, it would not become 010
@@ -218,16 +219,16 @@ set autochdir                    " 自动切换当前目录为当前文件所在
 set tags=tags;                   "ctags
 
 " 每行超过80个的字符用下划线标示
-au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%81v/
+"au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%81v/
 
 "高亮显示txt 需要txt.vim
 au BufRead,BufNewFile * setfiletype txt
 
 " Restore the last quit position when open file. 
- autocmd BufReadPost * 
-    \ if line("'\"") > 0 && line("'\"") <= line("$") | 
-     \     exe "normal g'\"" | 
-     \ endif
+ "autocmd BufReadPost * 
+    "\ if line("'\"") > 0 && line("'\"") <= line("$") | 
+     "\     exe "normal g'\"" | 
+     "\ endif
 
 "--------------------------------------------------
 " => keymap
@@ -375,10 +376,25 @@ nmap <F7> :SCCompileRun<cr>
 "--------------------------------------------------
 " => Ctrlp
 "--------------------------------------------------
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_clear_cache_on_exit=0
-let g:ctrlp_cache_dir=$HOME.'/.vim/.cache/ctrlp'
-let g:ctrlp_extensions=['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+"let g:ctrlp_working_path_mode=0
+"let g:ctrlp_clear_cache_on_exit=0
+"let g:ctrlp_cache_dir=$HOME.'/.vim/.cache/ctrlp'
+"let g:ctrlp_extensions=['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 
 "--------------------------------------------------
 " => Indent Guides
@@ -407,17 +423,19 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
-"--------------------------------------------------   
-" =>  easymotion                                        
-"--------------------------------------------------   
-let g:EasyMotion_leader_key = '<Leader>'               
-"--------------------------------------------------   
+"--------------------------------------------------
+" =>  easymotion                                   
+"--------------------------------------------------
+let g:EasyMotion_leader_key = '<Leader>'
+
+"--------------------------------------------------
 " =>  syntastic                                    
-"--------------------------------------------------   
+"--------------------------------------------------
 "let g:syntastic_echo_current_error=0
-"--------------------------------------------------   
+"
+"--------------------------------------------------
 " =>   ruby                                        
-"--------------------------------------------------   
+"--------------------------------------------------
 let g:ruby_operators                 = 1
 let g:ruby_fold                      = 1
 let g:ruby_space_errors              = 1
@@ -426,9 +444,9 @@ let g:rubycomplete_buffer_loading    = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails             = 1
 
-"--------------------------------------------------   
-" =>定义Debug函数，用来调试程序                                  
-"--------------------------------------------------   
+"--------------------------------------------------
+" =>定义Debug函数，用来调试程序                    
+"--------------------------------------------------
 func Debug()  
     exec "w"  
       
@@ -447,7 +465,10 @@ endfunc
 map <F6> :call Debug()<CR>
 imap <F6> <ESC>:call Debug()<CR>
 
-
-"--------------------------------------------------   
+"--------------------------------------------------
+" =>   ack                                        
+"--------------------------------------------------
+"set grepprg=ack
+"--------------------------------------------------
 " =>  END                                 
-"--------------------------------------------------   
+"--------------------------------------------------
