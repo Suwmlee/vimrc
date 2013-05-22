@@ -86,55 +86,47 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'majutsushi/tagbar'
 "search c-p
 Bundle 'kien/ctrlp.vim'
-"查找工程文件
-"Bundle 'mileszs/ack.vim'
+
 Bundle 'EasyGrep'
-" c 与 h 文件互换
-"Bundle 'a.vim'
 " Deal with pairs of punctuations such as (), [], {}, and so on
 Bundle 'kana/vim-smartinput'
 " Preview the definition of variables or functions in a preview window
 "ctags -R --fields=+lS
 " Echo the function declaration in the command line for C/C++
 Bundle 'echofunc.vim'
-"  Ultimate auto completion system for Vim
+" Ultimate auto completion system for Vim
 Bundle 'Shougo/neocomplcache'
-"Bundle 'CmdlineComplete'
-"Bundle 'xptemplate'
-Bundle 'txt.vim'
+"Bundle 'txt.vim'
+Bundle 'txt.vim--xu'
 " Improved C++ STL syntax highlighting
 Bundle 'STL-improved'
 "F2 and C-F2
 "Bundle 'VisualMarks.vim'
-Bundle 'cpp.vim'
+"syntax c++ and qt 
+Bundle 'cpp.vim--Skvirsky'
 "Bundle 'xolox/vim-easytags'
 " tabular /|
 Bundle 'godlygeek/tabular'
 "Visualize Vim undo tree
 "Bundle 'sjl/gundo.vim'
-"Text objects based on indent levels
-"Bundle 'michaeljsmith/vim-indent-object'
 "vic  dic  visual block
-Bundle 'coderifous/textobj-word-column.vim'
+"Bundle 'coderifous/textobj-word-column.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "语言编辑支持
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"gdb in vim need python 2.6+
-"Bundle 'skibyte/gdb-from-vim'
-"Bundle 'pyclewn'
-"一键编译
+"singlecompile using one key
 Bundle 'xuhdev/SingleCompile'
 " c++ IDE 
 Bundle 'c.vim'
-"Python 插件 
+"Python 
 "Tab 补全
 Bundle 'Pydiction'
 " doc lin  syn  check
 Bundle 'klen/python-mode'
 " Ruby 
 Bundle 'vim-ruby/vim-ruby' 
-"写标签语言的利器    cs  repeate
+"html xml ...  cs  repeate
 Bundle 'tpope/vim-surround'
 "ruby   compile
 Bundle 'tpope/vim-dispatch' 
@@ -160,8 +152,8 @@ colorscheme solarized
 set background=dark              " Set background
 set t_Co=256                     " Use 256 colors
 set guifont=Consolas:h11:b:cANSI " 字体设置  windows
-
-" MAX windows
+"set guifont=Courier\ 10\ Pitch\ Bold\ 12 " linux
+" MAX    in  windows
 " au GUIEnter * simalt ~x
 set lines=28 columns=120         " 设置窗口大小
 set history=500                  " 保留历史记录
@@ -190,7 +182,7 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set expandtab                    " Use spaces instead of tabs
-set list
+"set list
 " set listchars=tab:\|\ , 显示Tab符，使用一高亮竖线代替
 set cinoptions=g0,:0,N-s,(0
 set autoindent                   " always set autoindenting on
@@ -223,12 +215,6 @@ set tags=tags;                   "ctags
 
 "高亮显示txt 需要txt.vim
 au BufRead,BufNewFile * setfiletype txt
-
-" Restore the last quit position when open file. 
- "autocmd BufReadPost * 
-    "\ if line("'\"") > 0 && line("'\"") <= line("$") | 
-     "\     exe "normal g'\"" | 
-     "\ endif
 
 "--------------------------------------------------
 " => keymap
@@ -384,7 +370,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 "set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
@@ -411,18 +397,19 @@ let g:indent_guides_guide_size=1
 "--------------------------------------------------   
 " =>  tabular                                   
 "--------------------------------------------------   
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+" auto | tabular
+"inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
  
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
+"function! s:align()
+  "let p = '^\s*|\s.*\s|\s*$'
+  "if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    "let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    "let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    "Tabularize/|/l1
+    "normal! 0
+    "call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  "endif
+"endfunction
 "--------------------------------------------------
 " =>  easymotion                                   
 "--------------------------------------------------
@@ -445,7 +432,7 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails             = 1
 
 "--------------------------------------------------
-" =>定义Debug函数，用来调试程序                    
+" =>  Debug c c++ java
 "--------------------------------------------------
 func Debug()  
     exec "w"  
@@ -465,10 +452,6 @@ endfunc
 map <F6> :call Debug()<CR>
 imap <F6> <ESC>:call Debug()<CR>
 
-"--------------------------------------------------
-" =>   ack                                        
-"--------------------------------------------------
-"set grepprg=ack
 "--------------------------------------------------
 " =>  END                                 
 "--------------------------------------------------
