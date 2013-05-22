@@ -1,4 +1,4 @@
-set nocompatible "设置不兼容VI
+set nocompatible    "not support VI
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -40,7 +40,7 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle begin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set nocompatible "设置不兼容VI
+"set nocompatible " not support VI
 
 filetype off                " required!
 set rtp+=~/.vim/bundle/vundle/
@@ -54,28 +54,19 @@ Bundle 'gmarik/vundle'
 "主题颜色
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
-"Bundle 'w0ng/vim-hybrid'
-"Bundle 'Color-Sampler-Pack'
-"Bundle 'jonathanfilip/vim-lucius'
 
-"记录增删       就算退出编辑器, 还能还原已经修改过的文件, 方便得复制还原 
-"Bundle 'YankRing.vim'
 " bufexplorer   \BE
 Bundle "git://github.com/vim-scripts/bufexplorer.zip.git"
-"丰富的状态栏
+" status line
 Bundle 'Lokaltog/vim-powerline'
 "fast to get      \w  \f 
 Bundle 'Lokaltog/vim-easymotion' 
-" Under linux need exec 'dos2unix ~/.vim/bundle/QFixToggle/plugin/qfixtoggle.vim'
-Bundle 'QFixToggle'
 " Visually display indent levels in Vim   colors
 Bundle 'mutewinter/vim-indent-guides'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   便捷功能
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"显示最近打开过的文件
-"Bundle 'mru.vim'
 "Bundle 'The-NERD-tree'
 Bundle 'scrooloose/nerdtree'
 "Syntax check that runs files through external syntax checkers
@@ -210,12 +201,6 @@ set foldmethod=indent            " set default foldmethod
 set autochdir                    " 自动切换当前目录为当前文件所在的目录
 set tags=tags;                   "ctags
 
-" 每行超过80个的字符用下划线标示
-"au BufRead,BufNewFile *.asm,*.c,*.cpp,*.java,*.cs,*.sh,*.lua,*.pl,*.pm,*.py,*.rb,*.hs,*.vim 2match Underlined /.\%81v/
-
-"高亮显示txt 需要txt.vim
-au BufRead,BufNewFile * setfiletype txt
-
 "--------------------------------------------------
 " => keymap
 "--------------------------------------------------
@@ -232,12 +217,21 @@ inoremap <C-l> <Esc><C-W>l
 noremap <Up> gk
 noremap <Down> gj
 
-" open ctags entries in a new tab
-nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
-"nnoremap <silent> <F3> :Grep<CR>
 "Fast remove highlight search
 nmap <silent> <leader><cr> :noh<cr>
 
+"--------------------------------------------------
+" => ctags
+"--------------------------------------------------
+" open ctags entries in a new tab
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+"nnoremap <silent> <F3> :Grep<CR>
+
+"--------------------------------------------------
+" => txt--xu
+"--------------------------------------------------
+"高亮显示txt 需要txt.vim
+au BufRead,BufNewFile * setfiletype txt
 "--------------------------------------------------
 " => neocomplcache
 "--------------------------------------------------
