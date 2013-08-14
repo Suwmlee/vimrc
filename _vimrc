@@ -1,4 +1,5 @@
 set nocompatible    "not support VI
+
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
@@ -63,7 +64,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion' 
 " Visually display indent levels in Vim   colors
 Bundle 'mutewinter/vim-indent-guides'
-
+Bundle 'vim-scripts/calendar.vim--Matsumoto'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   便捷功能
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -116,11 +117,11 @@ Bundle 'Pydiction'
 " doc lin  syn  check
 Bundle 'klen/python-mode'
 " Ruby 
-Bundle 'vim-ruby/vim-ruby' 
+"Bundle 'vim-ruby/vim-ruby' 
 "html xml ...  cs  repeate
 Bundle 'tpope/vim-surround'
 "ruby   compile
-Bundle 'tpope/vim-dispatch' 
+"Bundle 'tpope/vim-dispatch' 
 "git 
 "Bundle 'tpope/vim-fugitive' 
 "for rails
@@ -135,18 +136,21 @@ filetype plugin indent on   " required!
 " colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "colorscheme codeschool
-colorscheme solarized
-"colorscheme molokai
+"colorscheme solarized
+"
+colorscheme molokai
+let g:molokai_original=1
+let g:rehash256=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " normal settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark              " Set background
 set t_Co=256                     " Use 256 colors
-set guifont=Consolas:h11:b:cANSI " 字体设置  windows
+set guifont=Consolas:h12:b:cANSI " 字体设置  windows
 "set guifont=Courier\ 10\ Pitch\ Bold\ 12 " linux
 " MAX    in  windows
-" au GUIEnter * simalt ~x
-set lines=28 columns=120         " 设置窗口大小
+au GUIEnter * simalt ~x
+"set lines=28 columns=120         " 设置窗口大小
 set history=500                  " 保留历史记录
 set guioptions-=T                " 取消菜单栏
 " Enable syntax highlighting
@@ -197,7 +201,7 @@ set magic                        " Enable magic matching
 set showmatch                    " show matching paren
 set wildmenu                     " 增强模式中的命令行自动完成操作
 set mouse=a                      " Enable mouse usage (all modes) in terminals
-set foldmethod=indent            " set default foldmethod
+set foldmethod=manual           " set default foldmethod
 set autochdir                    " 自动切换当前目录为当前文件所在的目录
 set tags=tags;                   "ctags
 
@@ -283,8 +287,8 @@ set laststatus=2            " always have status-line'
 " Auto change the root directory
 let NERDTreeChDirMode=2
 let NERDTreeWinPos="right"
-let g:NERDTreeWinSize = 23
-let g:tagbar_width = 30
+let g:NERDTreeWinSize = 28
+let g:tagbar_width = 28
 let g:tagbar_left = 1
 function! ToggleNERDTreeAndTagbar()
     let w:jumpbacktohere = 1
@@ -417,13 +421,13 @@ let g:EasyMotion_leader_key = '<Leader>'
 "--------------------------------------------------
 " =>   ruby                                        
 "--------------------------------------------------
-let g:ruby_operators                 = 1
-let g:ruby_fold                      = 1
-let g:ruby_space_errors              = 1
+"let g:ruby_operators                 = 1
+"let g:ruby_fold                      = 1
+"let g:ruby_space_errors              = 1
 
-let g:rubycomplete_buffer_loading    = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails             = 1
+"let g:rubycomplete_buffer_loading    = 1
+"let g:rubycomplete_classes_in_global = 1
+"let g:rubycomplete_rails             = 1
 
 "--------------------------------------------------
 " =>  Debug c c++ java
