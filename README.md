@@ -4,35 +4,33 @@ A vimrc file
 Install and Setup 
 ----------------------------------
 ###1.Install   vim 
-`download vim from Internet`
+Download vim from Internet
 
 ###2.Install git
 
-[git for windows](https://code.google.com/p/msysgit/downloads/list)
-git for linux <br /> 
+[Git for windows](https://code.google.com/p/msysgit/downloads/list)
+
 In ubuntu: `sudo apt-get install git`
 
-###3.Install vundle
+###3.Install vundle and vimrc
 
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+Vundle:   `git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
+Vimrc :   `git clone https://github.com/wanminlee/vimrc.git  ~/.vim/`
+[Install ctags](http://ctags.sourceforge.net/)
 
-###4.Install vimrc
+###5.Change your vimrc file
 
-    git clone https://github.com/wanminlee/myvimrc.git  ~/.vim/vimrc
-
-###5.Change vimrc
-
-$mv ~/.vimrc ~/oldvim
-
-$mv ~/.vim/vimrc/_vimrc  ~/.vimrc
+In Linux: <br />
+`$mv ~/.vimrc ~/oldvim`
+`$mv ~/.vim/vimrc/_vimrc  ~/.vimrc`
 
 ###6.BundleInstall 
 
 In vim  `:BundleInstall`
 
-###7.Delete ^M
+##Tips
 
-:e ++ff=dos  (vim>7.2)
+Delete ^M :   `e ++ff=dos`  (vim>7.2)
 
 KeyMaps
 ------------------------------
