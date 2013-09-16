@@ -1,38 +1,34 @@
-This is my vimrc
+A vimrc file
 ==================================
-        For backups - - !
+
 Install and Setup 
 ----------------------------------
 ###1.Install   vim 
-download vim from Internet
+`download vim from Internet`
 
 ###2.Install git
 
 [git for windows](https://code.google.com/p/msysgit/downloads/list)
-
 git for linux <br /> 
-In ubuntu: sudo apt-get install git 
+In ubuntu: `sudo apt-get install git`
 
 ###3.Install vundle
 
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-###4.Install myvimrc
+###4.Install vimrc
 
-    git clone https://github.com/wanminlee/myvimrc.git  vimrc
+    git clone https://github.com/wanminlee/myvimrc.git  ~/.vim/vimrc
 
 ###5.Change vimrc
 
 $mv ~/.vimrc ~/oldvim
 
-$mv vimrc/vimrc ~/.vimrc
+$mv ~/.vim/vimrc/_vimrc  ~/.vimrc
 
 ###6.BundleInstall 
 
-In vim 
-
-:BundleInstall
-
+In vim  `:BundleInstall`
 
 ###7.Delete ^M
 
