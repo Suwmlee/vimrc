@@ -31,8 +31,7 @@ In vim  `:BundleInstall`
 
 Delete ^M :   `e ++ff=dos`  (vim>7.2)
 
-KeyMaps
-------------------------------
+Keys:
 
 `F5`  : single compile <br />
 `F6`  : gdb    (-g -o)<br />
