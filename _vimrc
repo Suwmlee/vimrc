@@ -1,35 +1,35 @@
 set nocompatible    "not support VI
 
 source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set  diffexpr   WINDOWS 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+"source $VIMRUNTIME/mswin.vim         "Windows
+"behave mswin
+"set diffexpr=MyDiff()
+"function MyDiff()
+  "let opt = '-a --binary '
+  "if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  "if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  "let arg1 = v:fname_in
+  "if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  "let arg2 = v:fname_new
+  "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  "let arg3 = v:fname_out
+  "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  "let eq = ''
+  "if $VIMRUNTIME =~ ' '
+    "if &sh =~ '\<cmd'
+      "let cmd = '""' . $VIMRUNTIME . '\diff"'
+      "let eq = '"'
+    "else
+      "let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    "endif
+  "else
+    "let cmd = $VIMRUNTIME . '\diff'
+  "endif
+  "silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+"endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Encoding related
@@ -55,7 +55,7 @@ Bundle 'gmarik/vundle'
 "主题颜色
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
-
+"Bundle ''
 " bufexplorer   \BE
 Bundle "git://github.com/vim-scripts/bufexplorer.zip.git"
 " status line
@@ -85,10 +85,10 @@ Bundle 'kana/vim-smartinput'
 " Preview the definition of variables or functions in a preview window
 "ctags -R --fields=+lS
 " Echo the function declaration in the command line for C/C++
-Bundle 'echofunc.vim'
+"Bundle 'echofunc.vim'
 " Ultimate auto completion system for Vim
 Bundle 'Shougo/neocomplcache'
-"Bundle 'Shougo/neocomplete.vim'
+"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'txt.vim'
 Bundle 'txt.vim--xu'
 " Improved C++ STL syntax highlighting
@@ -136,26 +136,26 @@ filetype plugin indent on   " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme solarized
 if has('gui_running')
-    set background=light
+    set background=dark
+    colorscheme solarized
     let g:solarized_termcolors=256
     let g:solarized_italic =  0 
 else
     set background=dark
+    colorscheme molokai
+    let g:molokai_original=1
+    let g:rehash256=1
 endif
-"colorscheme molokai
-"let g:molokai_original=1
-"let g:rehash256=1
+set t_Co=256                     " Use 256 colors
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " normal settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark              " Set background
-set t_Co=256                     " Use 256 colors
-set guifont=Consolas:h12:b:cANSI " 字体设置  windows
-"set guifont=Courier\ 10\ Pitch\ Bold\ 12 " linux
+"set guifont=Consolas:h12:b:cANSI " 字体设置  windows
+set guifont=Courier\ 10\ Pitch\ 12 " linux
 " MAX    in  windows
-au GUIEnter * simalt ~x
+"au GUIEnter * simalt ~x        "WINDOWS
 "set lines=28 columns=120         " 设置窗口大小
 set history=500                  " 保留历史记录
 set guioptions-=T                " 取消菜单栏
@@ -394,7 +394,7 @@ let g:pydiction_menu_height = 20
 " Load show documentation plugin
 let g:pymode_doc = 1
 " Key for show python documentation
-let g:pymode_doc_key = 'K'
+"let g:pymode_doc_key = 'K'
 " Load run code plugin   we have singlecompile
 let g:pymode_run = 0
 " Key for run python code
@@ -443,11 +443,17 @@ let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 " => Indent Guides
 "--------------------------------------------------
 
+if has('gui_running')
+    let g:indent_guides_auto_colors = 1
+    set ts=4 sw=4 et
+else
+    let g:indent_guides_auto_colors = 0
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=dark   ctermbg=3
+    set ts=2 sw=2 et
+    "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=dark    ctermbg=4
+endif
+
 let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-set ts=4 sw=4 et
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size  = 1
 
@@ -471,22 +477,6 @@ let g:indent_guides_guide_size  = 1
 " =>  easymotion                                   
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
-
-"--------------------------------------------------
-" =>  syntastic                                    
-"--------------------------------------------------
-"let g:syntastic_echo_current_error=0
-"
-"--------------------------------------------------
-" =>   ruby                                        
-"--------------------------------------------------
-"let g:ruby_operators                 = 1
-"let g:ruby_fold                      = 1
-"let g:ruby_space_errors              = 1
-
-"let g:rubycomplete_buffer_loading    = 1
-"let g:rubycomplete_classes_in_global = 1
-"let g:rubycomplete_rails             = 1
 
 "--------------------------------------------------
 " =>  Debug c c++ java
