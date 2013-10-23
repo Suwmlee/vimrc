@@ -2,15 +2,6 @@
 set nocompatible    "设置不兼容 VI
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  判断操作系统 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if(has("win32") || has("win64") || has("win95") || has("win16"))
-    let g:iswindows = 1
-else
-    let g:iswindows = 0
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle begin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set nocompatible " not support VI
@@ -473,7 +464,7 @@ if has('gui_running')
 else
     let g:indent_guides_auto_colors = 0
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=dark   ctermbg=3
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=dark   ctermbg=4
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=dark   ctermbg=3
 endif
 
 let g:indent_guides_enable_on_vim_startup = 1
@@ -523,6 +514,15 @@ let g:EasyMotion_leader_key = '<Leader>'
 "imap <F6> <ESC>:call Debug()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  判断操作系统 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:iswindows = 0
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if g:iswindows 
@@ -559,11 +559,11 @@ if has('gui_running')
     colorscheme solarized
     let g:solarized_termcolors=256
     let g:solarized_italic =  0 
-    set showtabline=2               " 设置显示标签栏  GUI
-    set guioptions-=T                " 取消菜单栏 GUI
-    
-    set lines=30 columns=100         " 设置窗口大小
-    "au GUIEnter * simalt ~x        "WINDOWS下全屏
+    set showtabline=2        " 设置显示标签栏  GUI
+    set guioptions-=T        " 取消菜单栏 GUI
+
+    set lines=30 columns=100 " 设置窗口大小
+    "au GUIEnter * simalt ~x  " WINDOWS下全屏
     
     if g:iswindows
         set guifont=Consolas:h12:b:cANSI " 字体设置  windows
@@ -576,7 +576,6 @@ else
     let g:molokai_original=1
     let g:rehash256=1
 endif
-
 
 syntax enable                    " 打开语法高亮
 syntax on
