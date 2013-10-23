@@ -1,35 +1,14 @@
+
 set nocompatible    "设置不兼容 VI
 
-source $VIMRUNTIME/vimrc_example.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set  diffexpr   WINDOWS 
+"  判断操作系统 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"source $VIMRUNTIME/mswin.vim         "Windows
-"behave mswin
-"set diffexpr=MyDiff()
-"function MyDiff()
-  "let opt = '-a --binary '
-  "if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  "if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  "let arg1 = v:fname_in
-  "if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  "let arg2 = v:fname_new
-  "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  "let arg3 = v:fname_out
-  "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  "let eq = ''
-  "if $VIMRUNTIME =~ ' '
-    "if &sh =~ '\<cmd'
-      "let cmd = '""' . $VIMRUNTIME . '\diff"'
-      "let eq = '"'
-    "else
-      "let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    "endif
-  "else
-    "let cmd = $VIMRUNTIME . '\diff'
-  "endif
-  "silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-"endfunction
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:iswindows = 0
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle begin
@@ -175,17 +154,10 @@ set noerrorbells
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  展示/排版等界面格式设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-set guifont=Consolas:h12:b:cANSI " 字体设置  windows
-"set guifont=Courier\ 10\ Pitch\ 12 " linux
-
-"au GUIEnter * simalt ~x        "WINDOWS下全屏
-set lines=30 columns=100         " 设置窗口大小
-
-set guioptions-=T                " 取消菜单栏 GUI
-set shortmess=atI "启动不显示索马里儿童提示
-
-set number "显示行号
-set relativenumber "显示相对行号
+set shortmess=atI  " 启动不显示索马里儿童提示
+set t_Co=256       " Use 256 colors
+set number         " 显示行号
+set relativenumber " 显示相对行号
 "突出显示当前行
 set cursorcolumn
 set cursorline
@@ -278,7 +250,7 @@ nmap <silent> <leader><cr> :noh<cr>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-"inoremap kj <Esc>
+inoremap kj <Esc>
 " Go to home and end using capitalized directions
 noremap <C-e> $
 
@@ -501,8 +473,7 @@ if has('gui_running')
 else
     let g:indent_guides_auto_colors = 0
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=dark   ctermbg=3
-    set ts=2 sw=2 et
-    "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=dark    ctermbg=4
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=dark   ctermbg=4
 endif
 
 let g:indent_guides_enable_on_vim_startup = 1
@@ -554,19 +525,58 @@ let g:EasyMotion_leader_key = '<Leader>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+"if g:iswindows 
+    "source $VIMRUNTIME/mswin.vim         "Windows
+    "behave mswin
+    "set diffexpr=MyDiff()
+    "function MyDiff()
+        "let opt = '-a --binary '
+        "if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        "if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        "let arg1 = v:fname_in
+        "if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        "let arg2 = v:fname_new
+        "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        "let arg3 = v:fname_out
+        "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        "let eq = ''
+        "if $VIMRUNTIME =~ ' '
+          "if &sh =~ '\<cmd'
+            "let cmd = '""' . $VIMRUNTIME . '\diff"'
+            "let eq = '"'
+          "else
+            "let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+          "endif
+        "else
+          "let cmd = $VIMRUNTIME . '\diff'
+        "endif
+        "silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    "endfunction
+"endif
+
 if has('gui_running')
     set background=dark
     colorscheme solarized
     let g:solarized_termcolors=256
     let g:solarized_italic =  0 
     set showtabline=2               " 设置显示标签栏  GUI
+    set guioptions-=T                " 取消菜单栏 GUI
+    
+    set lines=30 columns=100         " 设置窗口大小
+    "au GUIEnter * simalt ~x        "WINDOWS下全屏
+    
+    if g:iswindows
+        set guifont=Consolas:h12:b:cANSI " 字体设置  windows
+    else
+        set guifont=Courier\ 10\ Pitch\ 12 " linux
+    endif
 else
     set background=dark
     colorscheme molokai
     let g:molokai_original=1
     let g:rehash256=1
 endif
-set t_Co=256                     " Use 256 colors
+
 
 syntax enable                    " 打开语法高亮
 syntax on
