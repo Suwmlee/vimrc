@@ -1,13 +1,13 @@
-A vimrc file
+自用Vim配置文件 :)
 
 Install and Setup 
 ----------------------------------
 ###1.Install   vim 
 Download vim from Internet
 
-###2.Install git
+###2.Install Git
 
-[Git for windows](https://code.google.com/p/msysgit/downloads/list)
+[Github for windows](https://windows.github.com/)
 
 In ubuntu: `sudo apt-get install git`
 
@@ -28,8 +28,6 @@ In Linux: <br />
 In vim  `:BundleInstall`
 
 ##Tips
-
-Delete ^M :   `e ++ff=dos`  (vim>7.2)
 
 Keys:
 
