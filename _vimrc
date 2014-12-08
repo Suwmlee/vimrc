@@ -1,5 +1,9 @@
-
-set nocompatible    "设置不兼容 VI
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    自用Vim配置文件
+"       简单、实用  :)
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle begin
@@ -16,13 +20,14 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
 " bufexplorer   \BE
-Bundle "git://github.com/vim-scripts/bufexplorer.zip.git"
+Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'Lokaltog/vim-powerline'
 "fast to get      \w  \f 
 Bundle 'Lokaltog/vim-easymotion' 
 " Visually display indent levels in Vim   colors
 Bundle 'nathanaelkane/vim-indent-guides'
 
+"日历  calendarH 可以写日记 :)
 Bundle 'vim-scripts/calendar.vim--Matsumoto'
 
 Bundle 'scrooloose/nerdtree'
@@ -50,6 +55,7 @@ Bundle 'Shougo/neocomplcache'
 "Bundle 'txt.vim'
 Bundle 'txt.vim--xu'
 " Improved C++ STL syntax highlighting
+Bundle 'STL-Syntax'
 Bundle 'STL-improved'
 "F2 and C-F2
 "Bundle 'VisualMarks.vim'
@@ -92,7 +98,7 @@ filetype plugin indent on   " required!
 " Encoding related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8
-set fileencodings=utf-8,gb2312,gbk,gb18030
+set fileencodings=utf-8,gb2312,gbk,gb18030,utf-16
 set termencoding=utf-8
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -139,8 +145,12 @@ set autochdir  " 自动切换当前目录为当前文件所在的目录
 
 set title
 "去掉错误提示音
-set novisualbell
+set visualbell      "会闪屏
 set noerrorbells
+set noeb
+
+set confirm         "处理未保存的文件需要确认"
+set noswapfile      "不生成swap文件"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  展示/排版等界面格式设置
@@ -148,9 +158,9 @@ set noerrorbells
 set shortmess=atI  " 启动不显示索马里儿童提示
 set t_Co=256       " Use 256 colors
 set number         " 显示行号
-set relativenumber " 显示相对行号
+"set relativenumber " 显示相对行号
 "突出显示当前行
-set cursorcolumn
+"set cursorcolumn
 set cursorline
 
 " set list "设置末尾为 $  提示
@@ -169,7 +179,7 @@ set foldenable
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent           " set default foldmethod
+set foldmethod=indent         " set default foldmethod
 
 "Tab related
 set shiftwidth=4
@@ -190,6 +200,7 @@ set shiftround            " use multiple of shiftwidth when indenting with '<' a
 set hidden                " allow to change buffer without saving
 set ttyfast
 set nowrap                " 设置不自动换行
+"set whichwrap+=<,>,h,l
 "set linebreak     " 整词换行，与自动换行搭配使用
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,7 +228,6 @@ set magic
 " Configure backspace so it acts as it should act
 "set backspace=2   " 设置退格键可用
 set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
 
 "--------------------------------------------------
 " => hot key
@@ -238,10 +248,12 @@ noremap <Down> gj
 nmap <silent> <leader><cr> :noh<cr>
 
 " Quickly edit/reload the vimrc file
+" Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <Leader>pf :e d:\Personal\ Files\reminder<CR>
 
-inoremap kj <Esc>
+"inoremap kj <Esc>
 " Go to home and end using capitalized directions
 noremap <C-e> $
 
@@ -313,22 +325,9 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 
-" For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
-" Or set this.
-"let g:neocomplcache_enable_cursor_hold_i = 1
-" Or set this.
-"let g:neocomplcache_enable_insert_char_pre = 1
-
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
-
 " Shell like behavior(not recommended).
 "set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
@@ -361,8 +360,8 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " Auto change the root directory
 let NERDTreeChDirMode=2
 let NERDTreeWinPos="right"
-let g:NERDTreeWinSize = 28
-let g:tagbar_width = 28
+let g:NERDTreeWinSize = 24
+let g:tagbar_width = 24
 let g:tagbar_left = 1
 function! ToggleNERDTreeAndTagbar()
     let w:jumpbacktohere = 1
@@ -403,23 +402,28 @@ nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
 " => Python
 "--------------------------------------------------
 let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
-let g:pydiction_menu_height = 20
+let g:pydiction_menu_height = 4
 
 "Python-mode
 " Load show documentation plugin
 let g:pymode_doc = 1
 " Key for show python documentation
-"let g:pymode_doc_key = 'K'
+let g:pymode_doc_key = 'K'
 " Load run code plugin   we have singlecompile
 let g:pymode_run = 0
 " Key for run python code
 "let g:pymode_run_key = '<leader>r'
 "Pymode pylint  0 is diable
 let g:pymode_lint=1
-let g:pymode_lint_checker="pyflakes,mccabe"
+"let g:pymode_lint_checker="pyflakes,mccabe"
+let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
 "let g:pymode_lint_ignore="E2,W"
 "auto-checking on every save is disabled.
-let g:pymode_lint_write=0
+"let g:pymode_lint_write=0
+
+"Trun off the rope script
+let g:pymode_rope = 0
+
 "enable breakpoint
 let g:pymode_breakpoint=1
 let g:pymode_breakpoint_key='<leader>b'
@@ -525,34 +529,34 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if g:iswindows 
-    "source $VIMRUNTIME/mswin.vim         "Windows
-    "behave mswin
-    "set diffexpr=MyDiff()
-    "function MyDiff()
-        "let opt = '-a --binary '
-        "if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-        "if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-        "let arg1 = v:fname_in
-        "if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-        "let arg2 = v:fname_new
-        "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-        "let arg3 = v:fname_out
-        "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-        "let eq = ''
-        "if $VIMRUNTIME =~ ' '
-          "if &sh =~ '\<cmd'
-            "let cmd = '""' . $VIMRUNTIME . '\diff"'
-            "let eq = '"'
-          "else
-            "let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-          "endif
-        "else
-          "let cmd = $VIMRUNTIME . '\diff'
-        "endif
-        "silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-    "endfunction
-"endif
+if g:iswindows           "Windows设置可以进行C-C 和C-V 
+    source $VIMRUNTIME/mswin.vim         
+    behave mswin
+    set diffexpr=MyDiff()
+    function MyDiff()
+        let opt = '-a --binary '
+        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        let arg1 = v:fname_in
+        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        let arg2 = v:fname_new
+        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        let arg3 = v:fname_out
+        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        let eq = ''
+        if $VIMRUNTIME =~ ' '
+          if &sh =~ '\<cmd'
+            let cmd = '""' . $VIMRUNTIME . '\diff"'
+            let eq = '"'
+          else
+            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+          endif
+        else
+          let cmd = $VIMRUNTIME . '\diff'
+        endif
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
 
 if has('gui_running')
     set background=dark
@@ -562,7 +566,7 @@ if has('gui_running')
     set showtabline=2        " 设置显示标签栏  GUI
     set guioptions-=T        " 取消菜单栏 GUI
 
-    set lines=30 columns=100 " 设置窗口大小
+    set lines=30 columns=110 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
     
     if g:iswindows
