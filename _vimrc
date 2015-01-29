@@ -75,9 +75,13 @@ Bundle 'xuhdev/SingleCompile'
 Bundle 'c.vim'
 "Python 
 "Tab 补全
-Bundle 'Pydiction'
-" doc lin  syn  check
-Bundle 'klen/python-mode'
+"Bundle 'Pydiction'
+Bundle 'rkulla/pydiction.git'
+" doc lin  syn  check windows只支持到32
+"Bundle 'klen/python-mode'
+"Bundle 'davidhalter/jedi-vim'
+"xml html 补全
+Bundle 'docunext/closetag.vim'
 " Ruby 
 "Bundle 'vim-ruby/vim-ruby' 
 "html xml ...  cs  repeate
@@ -195,7 +199,7 @@ set showcmd               " 在状态栏显示正确输入命令
 set showmode              " show current mode
 set showmatch             " 括号配对
 
-set scrolloff=7           " 在光标接近底端或顶端时，自动下滚或上滚
+set scrolloff=4           " 在光标接近底端或顶端时，自动下滚或上滚
 set shiftround            " use multiple of shiftwidth when indenting with '<' and '>'
 set hidden                " allow to change buffer without saving
 set ttyfast
@@ -327,7 +331,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
-let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
@@ -404,29 +408,29 @@ nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
 let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 let g:pydiction_menu_height = 4
 
-"Python-mode
-" Load show documentation plugin
-let g:pymode_doc = 1
-" Key for show python documentation
-let g:pymode_doc_key = 'K'
-" Load run code plugin   we have singlecompile
-let g:pymode_run = 0
-" Key for run python code
-"let g:pymode_run_key = '<leader>r'
-"Pymode pylint  0 is diable
-let g:pymode_lint=1
-"let g:pymode_lint_checker="pyflakes,mccabe"
-let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
-"let g:pymode_lint_ignore="E2,W"
-"auto-checking on every save is disabled.
-"let g:pymode_lint_write=0
+""Python-mode
+"" Load show documentation plugin
+"let g:pymode_doc = 1
+"" Key for show python documentation
+"let g:pymode_doc_key = 'K'
+"" Load run code plugin   we have singlecompile
+"let g:pymode_run = 0
+"" Key for run python code
+""let g:pymode_run_key = '<leader>r'
+""Pymode pylint  0 is diable
+"let g:pymode_lint=1
+""let g:pymode_lint_checker="pyflakes,mccabe"
+"let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
+""let g:pymode_lint_ignore="E2,W"
+""auto-checking on every save is disabled.
+""let g:pymode_lint_write=0
 
-"Trun off the rope script
-let g:pymode_rope = 0
+""Trun off the rope script
+"let g:pymode_rope = 0
 
-"enable breakpoint
-let g:pymode_breakpoint=1
-let g:pymode_breakpoint_key='<leader>b'
+""enable breakpoint
+"let g:pymode_breakpoint=1
+"let g:pymode_breakpoint_key='<leader>b'
 
 "--------------------------------------------------
 " => single compile
@@ -529,34 +533,34 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-if g:iswindows           "Windows设置可以进行C-C 和C-V 
-    source $VIMRUNTIME/mswin.vim         
-    behave mswin
-    set diffexpr=MyDiff()
-    function MyDiff()
-        let opt = '-a --binary '
-        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-        let arg1 = v:fname_in
-        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-        let arg2 = v:fname_new
-        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-        let arg3 = v:fname_out
-        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-        let eq = ''
-        if $VIMRUNTIME =~ ' '
-          if &sh =~ '\<cmd'
-            let cmd = '""' . $VIMRUNTIME . '\diff"'
-            let eq = '"'
-          else
-            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-          endif
-        else
-          let cmd = $VIMRUNTIME . '\diff'
-        endif
-        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-    endfunction
-endif
+"if g:iswindows           "Windows设置可以进行C-C 和C-V 
+    "source $VIMRUNTIME/mswin.vim         
+    "behave mswin
+    "set diffexpr=MyDiff()
+    "function MyDiff()
+        "let opt = '-a --binary '
+        "if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        "if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        "let arg1 = v:fname_in
+        "if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        "let arg2 = v:fname_new
+        "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        "let arg3 = v:fname_out
+        "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        "let eq = ''
+        "if $VIMRUNTIME =~ ' '
+          "if &sh =~ '\<cmd'
+            "let cmd = '""' . $VIMRUNTIME . '\diff"'
+            "let eq = '"'
+          "else
+            "let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+          "endif
+        "else
+          "let cmd = $VIMRUNTIME . '\diff'
+        "endif
+        "silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    "endfunction
+"endif
 
 if has('gui_running')
     set background=dark
