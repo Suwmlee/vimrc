@@ -3,13 +3,13 @@
 Install and Setup 
 ----------------------------------
 ###1.Install   vim 
-Download vim from Internet
+[Download Vim](http://www.vim.org/download.php)
 
 ###2.Install Git
 
 [Github for windows](https://windows.github.com/)
-
-In ubuntu: `sudo apt-get install git`
+[Git Download](http://git-scm.com/downloads)
+Attention: Add `environment variable`
 
 ###3.Install vundle and vimrc
 
@@ -19,13 +19,13 @@ Vimrc :   `git clone https://github.com/wanminlee/vimrc.git  ~/.vim/`<br />
 
 ###4.Change your vimrc file
 
-In Linux: <br />
-`$mv ~/.vimrc ~/oldvim`<br />
+Linux: <br />
+`$mv ~/.vimrc ~/.vimrc_backup`<br />
 `$mv ~/.vim/vimrc/_vimrc  ~/.vimrc`
 
 ###5.BundleInstall 
 
-In vim  `:BundleInstall`
+Vim  `:BundleInstall`
 
 ##Tips
 

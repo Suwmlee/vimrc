@@ -108,7 +108,6 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  基础设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=500                  " 保留历史记录
 ""检测文件类型
 "filetype on
 ""针对不同的文件类型采用不同的缩进格式
@@ -121,6 +120,7 @@ set history=500                  " 保留历史记录
 set nocompatible    "设置不兼容 VI
 set autoread        "文件修改后自动载入
 
+set history=500                  " 保留历史记录
 "备份相关
 set nobackup                     " 设置不生成备份文件
 "set backup
@@ -149,8 +149,9 @@ set autochdir  " 自动切换当前目录为当前文件所在的目录
 
 set title
 "去掉错误提示音
-set visualbell      "会闪屏
-set noerrorbells
+"set novisualbell
+set visualbell      "会闪屏 in Windows
+set noerrorbells     
 set noeb
 
 set confirm         "处理未保存的文件需要确认"
