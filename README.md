@@ -7,8 +7,8 @@ Install and Setup
 
 ###2.Install Git
 
-[Github for windows](https://windows.github.com/)
-[Git Download](http://git-scm.com/downloads)
+[Github for windows](https://windows.github.com/)<br />
+[Git Download](http://git-scm.com/downloads)<br />
 Attention: Add `environment variable`
 
 ###3.Install vundle and vimrc
