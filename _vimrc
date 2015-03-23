@@ -19,79 +19,59 @@ Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
-" bufexplorer   \BE
-Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'Lokaltog/vim-powerline'
-"fast to get      \w  \f 
-Bundle 'Lokaltog/vim-easymotion' 
 " Visually display indent levels in Vim   colors
 Bundle 'nathanaelkane/vim-indent-guides'
-
-"日历  calendarH 可以写日记 :)
-Bundle 'vim-scripts/calendar.vim--Matsumoto'
-
 Bundle 'scrooloose/nerdtree'
-"Syntax check that runs files through external syntax checkers
-"Bundle 'scrooloose/syntastic'
-"comment in a easy way     like c.vim
-Bundle 'scrooloose/nerdcommenter' 
 " Displays tags in a window, ordered by class etc, i used it instead of taglist
 Bundle 'majutsushi/tagbar'
+
+"comment in a easy way     like c.vim
+Bundle 'scrooloose/nerdcommenter' 
 "search c-p
 Bundle 'kien/ctrlp.vim'
-
 Bundle 'EasyGrep'
-" Deal with pairs of punctuations such as (), [], {}, and so on
-Bundle 'kana/vim-smartinput'
+" bufexplorer   \BE
+Bundle 'vim-scripts/bufexplorer.zip'
+"fast to get      \w  \f 
+Bundle 'Lokaltog/vim-easymotion' 
+" tabular /|
+Bundle 'godlygeek/tabular'
 
-" Preview the definition of variables or functions in a preview window
-"ctags -R --fields=+lS
-" Echo the function declaration in the command line for C/C++
-"Bundle 'echofunc.vim'
-
+""" syntax highlight and complete
+"Syntax check that runs files through external syntax checkers
+Bundle 'scrooloose/syntastic'
 " Ultimate auto completion system for Vim
 Bundle 'Shougo/neocomplcache'
-"Bundle 'Valloric/YouCompleteMe'
-"Bundle 'txt.vim'
 Bundle 'txt.vim--xu'
 " Improved C++ STL syntax highlighting
 Bundle 'STL-Syntax'
 Bundle 'STL-improved'
-"F2 and C-F2
-"Bundle 'VisualMarks.vim'
 "syntax c++ and qt 
 Bundle 'cpp.vim--Skvirsky'
-"Bundle 'xolox/vim-easytags'
-" tabular /|
-Bundle 'godlygeek/tabular'
-"Visualize Vim undo tree
-"Bundle 'sjl/gundo.vim'
-"vic  dic  visual block
-"Bundle 'coderifous/textobj-word-column.vim'
+" Deal with pairs of punctuations such as (), [], {}, and so on
+Bundle 'kana/vim-smartinput'
+"xml html 补全
+Bundle 'docunext/closetag.vim'
 
 "singlecompile using one key
 Bundle 'xuhdev/SingleCompile'
 " c++ IDE 
 Bundle 'c.vim'
+"html xml ...  cs  repeate
+Bundle 'tpope/vim-surround'
+
 "Python 
 "Tab 补全
 "Bundle 'Pydiction'
-Bundle 'rkulla/pydiction.git'
-" doc lin  syn  check windows只支持到32
+Bundle 'rkulla/pydiction'
+" doc lin  syn  check need compiled with python+ windows只支持到32
 "Bundle 'klen/python-mode'
+" need compiled with python+
 "Bundle 'davidhalter/jedi-vim'
-"xml html 补全
-Bundle 'docunext/closetag.vim'
-" Ruby 
-"Bundle 'vim-ruby/vim-ruby' 
-"html xml ...  cs  repeate
-Bundle 'tpope/vim-surround'
-"ruby   compile
-"Bundle 'tpope/vim-dispatch' 
-"git 
-"Bundle 'tpope/vim-fugitive' 
-"for rails
-"Bundle 'tpope/vim-rails' 
+
+"日历  calendarH 可以写日记 :)
+Bundle 'vim-scripts/calendar.vim--Matsumoto'
 
 " non github repos
 " ...
@@ -108,6 +88,7 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  基础设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+set history=500                  " 保留历史记录
 ""检测文件类型
 "filetype on
 ""针对不同的文件类型采用不同的缩进格式
@@ -120,7 +101,6 @@ set termencoding=utf-8
 set nocompatible    "设置不兼容 VI
 set autoread        "文件修改后自动载入
 
-set history=500                  " 保留历史记录
 "备份相关
 set nobackup                     " 设置不生成备份文件
 "set backup
@@ -149,9 +129,8 @@ set autochdir  " 自动切换当前目录为当前文件所在的目录
 
 set title
 "去掉错误提示音
-"set novisualbell
-set visualbell      "会闪屏 in Windows
-set noerrorbells     
+set visualbell      "会闪屏
+set noerrorbells
 set noeb
 
 set confirm         "处理未保存的文件需要确认"
@@ -404,6 +383,19 @@ endfunction
 nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
 
 "--------------------------------------------------
+" => Syntastic
+"--------------------------------------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"let g:syntastic_python_python_exec =
+"--------------------------------------------------
 " => Python
 "--------------------------------------------------
 let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
@@ -425,11 +417,12 @@ let g:pydiction_menu_height = 4
 ""let g:pymode_lint_ignore="E2,W"
 ""auto-checking on every save is disabled.
 ""let g:pymode_lint_write=0
-
+""
+"let g:pymode_virtualenv = 0
 ""Trun off the rope script
 "let g:pymode_rope = 0
 
-""enable breakpoint
+"enable breakpoint
 "let g:pymode_breakpoint=1
 "let g:pymode_breakpoint_key='<leader>b'
 
@@ -501,27 +494,6 @@ let g:indent_guides_guide_size  = 1
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
 
-"--------------------------------------------------
-" =>  Debug c c++ java
-"--------------------------------------------------
-"func Debug()  
-    "exec "w"  
-      
-    "if &filetype == 'c'  
-    "exec "!gcc % -g -o %<.exe"  
-    "exec "!gdb %<.exe"  
-    "elseif &filetype == 'cpp'  
-    "exec "!g++ % -g -o %<.exe"  
-    "exec "!gdb %<.exe"  
-    "elseif &filetype == 'java'  
-    "exec "!javac %"  
-    "exec "!jdb %<"  
-    "endif  
-"endfunc 
-"" F6 一键Debug
-"map <F6> :call Debug()<CR>
-"imap <F6> <ESC>:call Debug()<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  判断操作系统 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -571,7 +543,7 @@ if has('gui_running')
     set showtabline=2        " 设置显示标签栏  GUI
     set guioptions-=T        " 取消菜单栏 GUI
 
-    set lines=30 columns=110 " 设置窗口大小
+    set lines=40 columns=130 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
     
     if g:iswindows
