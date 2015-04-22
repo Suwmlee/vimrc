@@ -19,10 +19,17 @@ Bundle 'gmarik/vundle'
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
+"Bundle 'Lokaltog/vim-powerline'
 " Visually display indent levels in Vim   colors
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
+" always show nerdtree 
+Bundle 'jistr/vim-nerdtree-tabs'
+"  show tab c-a  like \be  d: delete buf
+Bundle 'szw/vim-ctrlspace'
+" bufexplorer   \BE  \BS
+"Bundle 'vim-scripts/bufexplorer.zip'
 " Displays tags in a window, ordered by class etc, i used it instead of taglist
 Bundle 'majutsushi/tagbar'
 
@@ -30,48 +37,60 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter' 
 "search c-p
 Bundle 'kien/ctrlp.vim'
-Bundle 'EasyGrep'
-" bufexplorer   \BE
-Bundle 'vim-scripts/bufexplorer.zip'
+"  多文件/vv 查找函数  /vr 替换 ::  ACK need install
+Bundle 'dkprice/vim-easygrep'
 "fast to get      \w  \f 
 Bundle 'Lokaltog/vim-easymotion' 
 " tabular /|
 Bundle 'godlygeek/tabular'
-
 """ syntax highlight and complete
 "Syntax check that runs files through external syntax checkers
 Bundle 'scrooloose/syntastic'
 " Ultimate auto completion system for Vim
 Bundle 'Shougo/neocomplcache'
-Bundle 'txt.vim--xu'
+" Deal with pairs of punctuations such as (), [], {}, and so on
+Bundle 'kana/vim-smartinput'
+"html xml ...  cs  repeate
+Bundle 'tpope/vim-surround'
+"singlecompile using one key
+Bundle 'xuhdev/SingleCompile'
+"show whitespace
+Bundle 'bronson/vim-trailing-whitespace'
+
+" c++ IDE
+Bundle 'c.vim'
+"syntax c++ and qt 
+Bundle 'cpp.vim--Skvirsky'
 " Improved C++ STL syntax highlighting
 Bundle 'STL-Syntax'
 Bundle 'STL-improved'
-"syntax c++ and qt 
-Bundle 'cpp.vim--Skvirsky'
-" Deal with pairs of punctuations such as (), [], {}, and so on
-Bundle 'kana/vim-smartinput'
-"xml html 补全
-Bundle 'docunext/closetag.vim'
 
-"singlecompile using one key
-Bundle 'xuhdev/SingleCompile'
-" c++ IDE 
-Bundle 'c.vim'
-"html xml ...  cs  repeate
-Bundle 'tpope/vim-surround'
+"Bundle 'txt.vim--xu'
+"日历  calendarH 可以写日记 :)
+Bundle 'vim-scripts/calendar.vim--Matsumoto'
 
 "Python 
 "Tab 补全
 "Bundle 'Pydiction'
 Bundle 'rkulla/pydiction'
+Bundle 'hdima/python-syntax'
+Bundle 'kevinw/pyflakes-vim'
 " doc lin  syn  check need compiled with python+ windows只支持到32
 "Bundle 'klen/python-mode'
 " need compiled with python+
 "Bundle 'davidhalter/jedi-vim'
 
-"日历  calendarH 可以写日记 :)
-Bundle 'vim-scripts/calendar.vim--Matsumoto'
+" HTML
+" 高亮
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'nono/jquery.vim'
+Bundle 'elzr/vim-json'
+"xml html 补全
+Bundle 'docunext/closetag.vim'
+" Zen Coding 
+Bundle 'mattn/emmet-vim'
+
 
 " non github repos
 " ...
@@ -155,7 +174,7 @@ set smartindent
 set autoindent                   
 
 "代码折叠
-set foldenable
+"set foldenable
 " 折叠方法
 " manual    手工折叠
 " indent    使用缩进表示折叠
@@ -163,7 +182,7 @@ set foldenable
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent         " set default foldmethod
+"set foldmethod=indent         " set default foldmethod
 
 "Tab related
 set shiftwidth=4
@@ -245,7 +264,7 @@ noremap <C-e> $
 " => ctags
 "--------------------------------------------------
 " open ctags entries in a new tab
-set tags=tags;/    
+set tags=tags;/
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 "nnoremap <silent> <F3> :Grep<CR>
 
@@ -337,7 +356,11 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " => vim-powerline
 "--------------------------------------------------
 "let g:Powerline_symbols = 'fancy'
-
+"--------------------------------------------------
+" => vim-powerline
+"--------------------------------------------------
+let g:ctrlspace_default_mapping_key = "<C-a>"
+":map <C-a>  :CtrlSpace<CR> 
 "--------------------------------------------------
 " => NERDTree options   Tagbar options
 "--------------------------------------------------
@@ -473,12 +496,12 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size  = 1
 
-"--------------------------------------------------   
-" =>  tabular                                   
-"--------------------------------------------------   
+"--------------------------------------------------
+" =>  tabular
+"--------------------------------------------------
 " auto | tabular
 "inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
- 
+
 "function! s:align()
   "let p = '^\s*|\s.*\s|\s*$'
   "if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
@@ -543,7 +566,7 @@ if has('gui_running')
     set showtabline=2        " 设置显示标签栏  GUI
     set guioptions-=T        " 取消菜单栏 GUI
 
-    set lines=40 columns=130 " 设置窗口大小
+    set lines=36 columns=130 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
     
     if g:iswindows
