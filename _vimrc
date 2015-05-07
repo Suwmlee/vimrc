@@ -171,7 +171,7 @@ set cursorline
 
 " 自动缩进
 set smartindent
-set autoindent                   
+set autoindent
 
 "代码折叠
 "set foldenable
@@ -211,7 +211,8 @@ set nowrap                " 设置不自动换行
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows
 "autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux
- 
+autocmd BufRead,BufNewFile *.xaml :set filetype=xml
+
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "回车即选中当前项
@@ -370,30 +371,37 @@ let NERDTreeWinPos="right"
 let g:NERDTreeWinSize = 24
 let g:tagbar_width = 24
 let g:tagbar_left = 1
-function! ToggleNERDTreeAndTagbar()
-    let w:jumpbacktohere = 1
 
+function! ToggleTagBar()
+    let w:jumpbacktohere = 1
+    let tagbar_open = bufwinnr('__Tagbar__') != -1
+    if tagbar_open
+        TagbarClose
+    else
+        TagbarOpen
+    endif
+    for window in range(1, winnr('$'))
+        execute window . 'wincmd w'
+        if exists('w:jumpbacktohere')
+            unlet w:jumpbacktohere
+            break
+        endif
+    endfor
+endfunction
+
+function! ToggleNERDTree()
+    let w:jumpbacktohere = 1
     " Detect which plugins are open
     if exists('t:NERDTreeBufName')
         let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
     else
         let nerdtree_open = 0
     endif
-    let tagbar_open = bufwinnr('__Tagbar__') != -1
-
-    " Perform the appropriate action
-    if nerdtree_open && tagbar_open
+    if nerdtree_open
         NERDTreeClose
-        TagbarClose  
-     elseif nerdtree_open
-        TagbarOpen
-     elseif tagbar_open
+    else
         NERDTree
-    else  
-        NERDTree
-        TagbarOpen
     endif
-
     " Jump back to the original window
     for window in range(1, winnr('$'))
         execute window . 'wincmd w'
@@ -403,7 +411,10 @@ function! ToggleNERDTreeAndTagbar()
         endif
     endfor
 endfunction
-nmap <F8> :call ToggleNERDTreeAndTagbar()<CR>
+
+nmap <F7> :call ToggleTagBar()<CR>
+nmap <F8> :call ToggleNERDTree()<CR>
+"nmap <F7> :call ToggleNERDTreeAndTagbar()<CR>
 
 "--------------------------------------------------
 " => Syntastic
@@ -453,7 +464,7 @@ let g:pydiction_menu_height = 4
 " => single compile
 "--------------------------------------------------
 nmap <F5> :SCCompile<cr>
-nmap <F7> :SCCompileRun<cr>
+nmap <F6> :SCCompileRun<cr>
 "let g:SingleCompile_usequickfix = 0
 
 "--------------------------------------------------
@@ -584,5 +595,5 @@ endif
 syntax enable                    " 打开语法高亮
 syntax on
 "--------------------------------------------------
-" =>  END                                 
+" =>  END
 "--------------------------------------------------
