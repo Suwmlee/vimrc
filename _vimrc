@@ -24,8 +24,8 @@ Bundle 'bling/vim-airline'
 " Visually display indent levels in Vim   colors
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
-" always show nerdtree 
-Bundle 'jistr/vim-nerdtree-tabs'
+" always show nerdtree
+"Bundle 'jistr/vim-nerdtree-tabs'
 "  show tab c-a  like \be  d: delete buf
 Bundle 'szw/vim-ctrlspace'
 " bufexplorer   \BE  \BS
@@ -34,13 +34,13 @@ Bundle 'szw/vim-ctrlspace'
 Bundle 'majutsushi/tagbar'
 
 "comment in a easy way     like c.vim
-Bundle 'scrooloose/nerdcommenter' 
+Bundle 'scrooloose/nerdcommenter'
 "search c-p
 Bundle 'kien/ctrlp.vim'
 "  多文件/vv 查找函数  /vr 替换 ::  ACK need install
 Bundle 'dkprice/vim-easygrep'
-"fast to get      \w  \f 
-Bundle 'Lokaltog/vim-easymotion' 
+"fast to get      \w  \f
+Bundle 'Lokaltog/vim-easymotion'
 " tabular /|
 Bundle 'godlygeek/tabular'
 """ syntax highlight and complete
@@ -54,22 +54,22 @@ Bundle 'kana/vim-smartinput'
 Bundle 'tpope/vim-surround'
 "singlecompile using one key
 Bundle 'xuhdev/SingleCompile'
-"show whitespace
+"show whitespace   delete call :fixwhitespace
 Bundle 'bronson/vim-trailing-whitespace'
 
 " c++ IDE
 Bundle 'c.vim'
-"syntax c++ and qt 
+"syntax c++ and qt
 Bundle 'cpp.vim--Skvirsky'
 " Improved C++ STL syntax highlighting
 Bundle 'STL-Syntax'
 Bundle 'STL-improved'
 
 "Bundle 'txt.vim--xu'
-"日历  calendarH 可以写日记 :)
-Bundle 'vim-scripts/calendar.vim--Matsumoto'
+"日历  calendarH 可以写日记 :) using google keep
+"Bundle 'vim-scripts/calendar.vim--Matsumoto'
 
-"Python 
+"Python
 "Tab 补全
 "Bundle 'Pydiction'
 Bundle 'rkulla/pydiction'
@@ -88,13 +88,13 @@ Bundle 'nono/jquery.vim'
 Bundle 'elzr/vim-json'
 "xml html 补全
 Bundle 'docunext/closetag.vim'
-" Zen Coding 
+" Zen Coding
 Bundle 'mattn/emmet-vim'
 
 
 " non github repos
 " ...
-filetype plugin indent on   " required! 
+filetype plugin indent on   " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,6 +212,7 @@ set nowrap                " 设置不自动换行
 "autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows
 "autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux
 autocmd BufRead,BufNewFile *.xaml :set filetype=xml
+autocmd BufRead,BufNewFile *.cshtml :set filetype=html
 
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -236,15 +237,15 @@ set backspace=eol,start,indent
 "--------------------------------------------------
 " => hot key
 "--------------------------------------------------
-" Switching between buffers. 
-nnoremap <C-h> <C-W>h  
-nnoremap <C-j> <C-W>j  
-nnoremap <C-k> <C-W>k  
-nnoremap <C-l> <C-W>l  
-inoremap <C-h> <Esc><C-W>h  
-inoremap <C-j> <Esc><C-W>j  
-inoremap <C-k> <Esc><C-W>k  
-inoremap <C-l> <Esc><C-W>l  
+" Switching between buffers.
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+inoremap <C-h> <Esc><C-W>h
+inoremap <C-j> <Esc><C-W>j
+inoremap <C-k> <Esc><C-W>k
+inoremap <C-l> <Esc><C-W>l
 " Set Up and Down non-linewise
 noremap <Up> gk
 noremap <Down> gj
@@ -361,7 +362,7 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " => vim-powerline
 "--------------------------------------------------
 let g:ctrlspace_default_mapping_key = "<C-a>"
-":map <C-a>  :CtrlSpace<CR> 
+":map <C-a>  :CtrlSpace<CR>
 "--------------------------------------------------
 " => NERDTree options   Tagbar options
 "--------------------------------------------------
@@ -524,12 +525,12 @@ let g:indent_guides_guide_size  = 1
   "endif
 "endfunction
 "--------------------------------------------------
-" =>  easymotion                                   
+" =>  easymotion
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  判断操作系统 
+"  判断操作系统
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 if(has("win32") || has("win64") || has("win95") || has("win16"))
     let g:iswindows = 1
@@ -540,8 +541,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if g:iswindows           "Windows设置可以进行C-C 和C-V 
-    "source $VIMRUNTIME/mswin.vim         
+"if g:iswindows           "Windows设置可以进行C-C 和C-V
+    "source $VIMRUNTIME/mswin.vim
     "behave mswin
     "set diffexpr=MyDiff()
     "function MyDiff()
@@ -573,13 +574,13 @@ if has('gui_running')
     set background=dark
     colorscheme solarized
     let g:solarized_termcolors=256
-    let g:solarized_italic =  0 
+    let g:solarized_italic =  0
     set showtabline=2        " 设置显示标签栏  GUI
     set guioptions-=T        " 取消菜单栏 GUI
 
     set lines=36 columns=130 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
-    
+
     if g:iswindows
         set guifont=Consolas:h12:b:cANSI " 字体设置  windows
     else
