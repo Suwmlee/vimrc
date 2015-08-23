@@ -76,7 +76,7 @@ Bundle 'rkulla/pydiction'
 Bundle 'hdima/python-syntax'
 Bundle 'kevinw/pyflakes-vim'
 " doc lin  syn  check need compiled with python+ windows只支持到32
-"Bundle 'klen/python-mode'
+Bundle 'klen/python-mode'
 " need compiled with python+
 "Bundle 'davidhalter/jedi-vim'
 
@@ -174,7 +174,7 @@ set smartindent
 set autoindent
 
 "代码折叠
-"set foldenable
+set foldenable
 " 折叠方法
 " manual    手工折叠
 " indent    使用缩进表示折叠
@@ -182,7 +182,7 @@ set autoindent
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-"set foldmethod=indent         " set default foldmethod
+set foldmethod=indent         " set default foldmethod
 
 "Tab related
 set shiftwidth=4
@@ -253,10 +253,9 @@ noremap <Down> gj
 nmap <silent> <leader><cr> :noh<cr>
 
 " Quickly edit/reload the vimrc file
-" Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-nmap <silent> <Leader>pf :e d:\Personal\ Files\reminder<CR>
+"nmap <silent> <Leader>pf :e d:\Personal\ Files\reminder<CR>
 
 "inoremap kj <Esc>
 " Go to home and end using capitalized directions
@@ -359,10 +358,10 @@ let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "--------------------------------------------------
 "let g:Powerline_symbols = 'fancy'
 "--------------------------------------------------
-" => vim-powerline
+" => vim-ctrlspace
 "--------------------------------------------------
 let g:ctrlspace_default_mapping_key = "<C-a>"
-":map <C-a>  :CtrlSpace<CR>
+:map <C-a>  :CtrlSpace<CR>
 "--------------------------------------------------
 " => NERDTree options   Tagbar options
 "--------------------------------------------------
@@ -436,30 +435,30 @@ let g:syntastic_check_on_wq = 0
 let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 let g:pydiction_menu_height = 4
 
-""Python-mode
-"" Load show documentation plugin
-"let g:pymode_doc = 1
-"" Key for show python documentation
-"let g:pymode_doc_key = 'K'
-"" Load run code plugin   we have singlecompile
-"let g:pymode_run = 0
-"" Key for run python code
-""let g:pymode_run_key = '<leader>r'
-""Pymode pylint  0 is diable
-"let g:pymode_lint=1
-""let g:pymode_lint_checker="pyflakes,mccabe"
-"let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
-""let g:pymode_lint_ignore="E2,W"
-""auto-checking on every save is disabled.
-""let g:pymode_lint_write=0
-""
-"let g:pymode_virtualenv = 0
-""Trun off the rope script
-"let g:pymode_rope = 0
+"Python-mode
+" Load show documentation plugin
+let g:pymode_doc = 1
+" Key for show python documentation
+let g:pymode_doc_key = 'K'
+" Load run code plugin   we have singlecompile
+let g:pymode_run = 0
+" Key for run python code
+"let g:pymode_run_key = '<leader>r'
+"Pymode pylint  0 is diable
+let g:pymode_lint=1
+"let g:pymode_lint_checker="pyflakes,mccabe"
+let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
+"let g:pymode_lint_ignore="E2,W"
+"auto-checking on every save is disabled.
+"let g:pymode_lint_write=0
+"
+let g:pymode_virtualenv = 0
+"Trun off the rope script
+let g:pymode_rope = 0
 
 "enable breakpoint
-"let g:pymode_breakpoint=1
-"let g:pymode_breakpoint_key='<leader>b'
+let g:pymode_breakpoint=1
+let g:pymode_breakpoint_key='<leader>b'
 
 "--------------------------------------------------
 " => single compile
