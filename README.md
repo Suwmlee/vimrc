@@ -13,19 +13,11 @@ Attention: Add `environment variable`
 
 ###3.Install vundle and vimrc
 
-Vundle:   `git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`<br />
-Vimrc :   `git clone https://github.com/wanminlee/vimrc.git  ~/.vim/`<br />
+Vundle:   `git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle`<br />
+Vimrc :   `git clone https://github.com/Suwmlee/vimrc.git  ~/vims/`<br />
 [Install ctags](http://ctags.sourceforge.net/)
 
-###4.Change your vimrc file
-
-Linux: <br />
-`$mv ~/.vimrc ~/.vimrc_backup`<br />
-`$mv ~/.vim/vimrc/_vimrc  ~/.vimrc`
-
-###5.BundleInstall 
-
-Vim  `:BundleInstall`
+###4.Repalce vimrc file and PluginInstall
 
 ##Tips
 
