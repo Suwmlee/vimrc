@@ -4,96 +4,92 @@
 "       简单、实用  :)
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"  判断操作系统
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:iswindows = 0
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle begin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set nocompatible " not support VI
-
-filetype off                " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible                " not support VI
+filetype off                    " required!
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin'VundleVim/Vundle.vim'
 " vim-scripts repos
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'tomasr/molokai'
-Bundle 'bling/vim-airline'
-"Bundle 'Lokaltog/vim-powerline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'bling/vim-airline'
 " Visually display indent levels in Vim   colors
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'scrooloose/nerdtree'
-" always show nerdtree
-"Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/nerdtree'
 "  show tab c-a  like \be  d: delete buf
-Bundle 'szw/vim-ctrlspace'
-" bufexplorer   \BE  \BS
-"Bundle 'vim-scripts/bufexplorer.zip'
+Plugin 'szw/vim-ctrlspace'
 " Displays tags in a window, ordered by class etc, i used it instead of taglist
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
-"comment in a easy way     like c.vim
-Bundle 'scrooloose/nerdcommenter'
-"search c-p
-Bundle 'kien/ctrlp.vim'
-"  多文件/vv 查找函数  /vr 替换 ::  ACK need install
-Bundle 'dkprice/vim-easygrep'
+"comment in a easy way  \cc \cu   like c.vim
+Plugin 'scrooloose/nerdcommenter'
+"search files  c-p
+Plugin 'kien/ctrlp.vim'
 "fast to get      \w  \f
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 " tabular /|
-Bundle 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
 """ syntax highlight and complete
 "Syntax check that runs files through external syntax checkers
-Bundle 'scrooloose/syntastic'
-" Ultimate auto completion system for Vim
-Bundle 'Shougo/neocomplcache'
+Plugin 'scrooloose/syntastic'
 " Deal with pairs of punctuations such as (), [], {}, and so on
-Bundle 'kana/vim-smartinput'
+Plugin 'kana/vim-smartinput'
 "html xml ...  cs  repeate
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 "singlecompile using one key
-Bundle 'xuhdev/SingleCompile'
+Plugin 'xuhdev/SingleCompile'
 "show whitespace   delete call :fixwhitespace
-Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bronson/vim-trailing-whitespace'
+
+if g:iswindows
+    " Ultimate auto completion system for Vim
+    Plugin 'Shougo/neocomplcache'
+else
+    " YCM
+    Plugin 'Valloric/YouCompleteMe'
+endif
 
 " c++ IDE
-Bundle 'c.vim'
+Plugin 'c.vim'
 "syntax c++ and qt
-Bundle 'cpp.vim--Skvirsky'
+Plugin 'cpp.vim--Skvirsky'
 " Improved C++ STL syntax highlighting
-Bundle 'STL-Syntax'
-Bundle 'STL-improved'
-
-"Bundle 'txt.vim--xu'
-"日历  calendarH 可以写日记 :) using google keep
-"Bundle 'vim-scripts/calendar.vim--Matsumoto'
+Plugin 'STL-Syntax'
+Plugin 'STL-improved'
 
 "Python
 "Tab 补全
-"Bundle 'Pydiction'
-Bundle 'rkulla/pydiction'
-Bundle 'hdima/python-syntax'
-Bundle 'kevinw/pyflakes-vim'
+"Plugin 'Pydiction'
+Plugin 'rkulla/pydiction'
+Plugin 'hdima/python-syntax'
+Plugin 'kevinw/pyflakes-vim'
 " doc lin  syn  check need compiled with python+ windows只支持到32
-Bundle 'klen/python-mode'
+"Plugin 'klen/python-mode'
 " need compiled with python+
-"Bundle 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 
-" HTML
-" 高亮
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'nono/jquery.vim'
-Bundle 'elzr/vim-json'
+" HTML 高亮
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'nono/jquery.vim'
+Plugin 'elzr/vim-json'
 "xml html 补全
-Bundle 'docunext/closetag.vim'
-" Zen Coding
-Bundle 'mattn/emmet-vim'
+Plugin 'docunext/closetag.vim'
 
-
-" non github repos
-" ...
+" All of your Plugins must be added before the following line
+call vundle#end()
 filetype plugin indent on   " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle end
@@ -107,21 +103,12 @@ set termencoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  基础设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=500                  " 保留历史记录
-""检测文件类型
-"filetype on
-""针对不同的文件类型采用不同的缩进格式
-"filetype indent on
-""允许插件
-"filetype plugin on
-""启动自动补全
-"filetype plugin indent on
-
-set nocompatible    "设置不兼容 VI
-set autoread        "文件修改后自动载入
+set history=500                     " 保留历史记录
+set nocompatible                    "设置不兼容 VI
+set autoread                        "文件修改后自动载入
 
 "备份相关
-set nobackup                     " 设置不生成备份文件
+set nobackup                        " 设置不生成备份文件
 "set backup
 "下面两行改变备份文件存放路径
 "set backupdir=~/.vim/backup
@@ -142,7 +129,6 @@ set ignorecase " 搜索时忽略大小写
 set smartcase  " 保持字符串的内容，替换字符串的大小写风格.
 set incsearch  " 随着键入及时搜索
 set hlsearch   " 高亮search命中的文本
-
 set mouse=a    " 所有模式鼠标可用
 set autochdir  " 自动切换当前目录为当前文件所在的目录
 
@@ -270,93 +256,86 @@ nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 "nnoremap <silent> <F3> :Grep<CR>
 
 "--------------------------------------------------
-" => txt--xu
-"--------------------------------------------------
-"高亮显示txt 需要txt.vim
-au BufRead,BufNewFile * setfiletype txt
-"--------------------------------------------------
 " => neocomplcache
 "--------------------------------------------------
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+if g:iswindows
 
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
+    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!  " Disable AutoComplPop.  let g:acp_enableAtStartup = 0
+    " Use neocomplcache.
+    let g:neocomplcache_enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplcache_enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplcache_min_syntax_length = 3
+    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+    " Enable heavy features.
+    " Use camel case completion.
+    "let g:neocomplcache_enable_camel_case_completion = 1
+    " Use underbar completion.
+    "let g:neocomplcache_enable_underbar_completion = 1
 
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
+    " Define dictionary.
+    let g:neocomplcache_dictionary_filetype_lists = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
+
+    " Define keyword.
+    if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+    endif
+    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+    " Plugin key-mappings.
+    inoremap <expr><C-g>     neocomplcache#undo_completion()
+    inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    function! s:my_cr_function()
+      return neocomplcache#smart_close_popup() . "\<CR>"
+      " For no inserting <CR> key.
+      "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+    endfunction
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-y>  neocomplcache#close_popup()
+    inoremap <expr><C-e>  neocomplcache#cancel_popup()
+    " Close popup by <Space>.
+    "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+    " Shell like behavior(not recommended).
+    "set completeopt+=longest
+    "let g:neocomplcache_enable_auto_select = 1
+    "let g:neocomplcache_disable_auto_complete = 1
+    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplcache_omni_patterns')
+      let g:neocomplcache_omni_patterns = {}
+    endif
+    let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+    " For perlomni.vim setting.
+    " https://github.com/c9s/perlomni.vim
+    let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"--------------------------------------------------
-" => vim-powerline
-"--------------------------------------------------
-"let g:Powerline_symbols = 'fancy'
 "--------------------------------------------------
 " => vim-ctrlspace
 "--------------------------------------------------
@@ -435,30 +414,30 @@ let g:syntastic_check_on_wq = 0
 let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 let g:pydiction_menu_height = 4
 
-"Python-mode
-" Load show documentation plugin
-let g:pymode_doc = 1
-" Key for show python documentation
-let g:pymode_doc_key = 'K'
-" Load run code plugin   we have singlecompile
-let g:pymode_run = 0
-" Key for run python code
-"let g:pymode_run_key = '<leader>r'
-"Pymode pylint  0 is diable
-let g:pymode_lint=1
-"let g:pymode_lint_checker="pyflakes,mccabe"
-let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
-"let g:pymode_lint_ignore="E2,W"
-"auto-checking on every save is disabled.
-"let g:pymode_lint_write=0
-"
-let g:pymode_virtualenv = 0
-"Trun off the rope script
-let g:pymode_rope = 0
+""Python-mode
+"" Load show documentation plugin
+"let g:pymode_doc = 1
+"" Key for show python documentation
+"let g:pymode_doc_key = 'K'
+"" Load run code plugin   we have singlecompile
+"let g:pymode_run = 0
+"" Key for run python code
+""let g:pymode_run_key = '<leader>r'
+""Pymode pylint  0 is diable
+"let g:pymode_lint=1
+""let g:pymode_lint_checker="pyflakes,mccabe"
+"let g:pymode_lint_checkers = ['pyflakes', 'mccabe', 'pep8']
+""let g:pymode_lint_ignore="E2,W"
+""auto-checking on every save is disabled.
+""let g:pymode_lint_write=0
+""
+"let g:pymode_virtualenv = 0
+""Trun off the rope script
+"let g:pymode_rope = 0
 
-"enable breakpoint
-let g:pymode_breakpoint=1
-let g:pymode_breakpoint_key='<leader>b'
+""enable breakpoint
+"let g:pymode_breakpoint=1
+"let g:pymode_breakpoint_key='<leader>b'
 
 "--------------------------------------------------
 " => single compile
@@ -527,16 +506,6 @@ let g:indent_guides_guide_size  = 1
 " =>  easymotion
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  判断操作系统
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if(has("win32") || has("win64") || has("win95") || has("win16"))
-    let g:iswindows = 1
-else
-    let g:iswindows = 0
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
