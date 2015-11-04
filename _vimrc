@@ -339,11 +339,6 @@ if useneocomplcache
 
 endif
 "--------------------------------------------------
-" => vim-ctrlspace
-"--------------------------------------------------
-let g:ctrlspace_default_mapping_key = "<C-a>"
-:map <C-a>  :CtrlSpace<CR>
-"--------------------------------------------------
 " => NERDTree options   Tagbar options
 "--------------------------------------------------
 " Auto change the root directory
@@ -509,6 +504,12 @@ let g:indent_guides_guide_size  = 1
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
 "--------------------------------------------------
+" => vim-ctrlspace
+"--------------------------------------------------
+let g:CtrlSpaceUseTabline = 0
+let g:ctrlspace_default_mapping_key = "<C-a>"
+:map <C-a>  :CtrlSpace<CR>
+"--------------------------------------------------
 " =>  toolbar
 "--------------------------------------------------
 set guioptions-=m
@@ -520,8 +521,6 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -559,9 +558,8 @@ if has('gui_running')
     colorscheme solarized
     let g:solarized_termcolors=256
     let g:solarized_italic =  0
-    set showtabline=2        " 设置显示标签栏  GUI
+    "set showtabline=2        " 设置显示标签栏  GUI
     "set guioptions-=T        " 取消菜单栏 GUI
-
     set lines=36 columns=130 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
 
