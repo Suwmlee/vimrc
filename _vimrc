@@ -56,8 +56,10 @@ Plugin 'bronson/vim-trailing-whitespace'
 if g:iswindows
     " Ultimate auto completion system for Vim
     Plugin 'Shougo/neocomplcache'
+    let useneocomplcache = 1
 else
-    " YCM
+    let useneocomplcache = 0
+    " YCM need compile
     Plugin 'Valloric/YouCompleteMe'
 endif
 
@@ -72,9 +74,9 @@ Plugin 'STL-improved'
 "Python
 "Tab 补全
 "Plugin 'Pydiction'
-Plugin 'rkulla/pydiction'
-Plugin 'hdima/python-syntax'
-Plugin 'kevinw/pyflakes-vim'
+"Plugin 'rkulla/pydiction'
+"Plugin 'hdima/python-syntax'
+"Plugin 'kevinw/pyflakes-vim'
 " doc lin  syn  check need compiled with python+ windows只支持到32
 "Plugin 'klen/python-mode'
 " need compiled with python+
@@ -258,7 +260,7 @@ nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 "--------------------------------------------------
 " => neocomplcache
 "--------------------------------------------------
-if g:iswindows
+if useneocomplcache
 
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!  " Disable AutoComplPop.  let g:acp_enableAtStartup = 0
     " Use neocomplcache.
@@ -506,6 +508,20 @@ let g:indent_guides_guide_size  = 1
 " =>  easymotion
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
+"--------------------------------------------------
+" =>  toolbar
+"--------------------------------------------------
+set guioptions-=m
+set guioptions-=T
+map <silent> <F2> :if &guioptions =~# 'T' <Bar>
+        \set guioptions-=T <Bar>
+        \set guioptions-=m <bar>
+    \else <Bar>
+        \set guioptions+=T <Bar>
+        \set guioptions+=m <Bar>
+    \endif<CR>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -544,7 +560,7 @@ if has('gui_running')
     let g:solarized_termcolors=256
     let g:solarized_italic =  0
     set showtabline=2        " 设置显示标签栏  GUI
-    set guioptions-=T        " 取消菜单栏 GUI
+    "set guioptions-=T        " 取消菜单栏 GUI
 
     set lines=36 columns=130 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
