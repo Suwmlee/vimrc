@@ -510,7 +510,7 @@ let g:CtrlSpaceUseTabline = 0
 let g:ctrlspace_default_mapping_key = "<C-a>"
 :map <C-a>  :CtrlSpace<CR>
 "--------------------------------------------------
-" =>  toolbar
+" =>  Custom KEY
 "--------------------------------------------------
 set guioptions-=m
 set guioptions-=T
@@ -521,6 +521,10 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+
+" Full Window
+map <silent> <F11> :only<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -558,15 +562,15 @@ if has('gui_running')
     colorscheme solarized
     let g:solarized_termcolors=256
     let g:solarized_italic =  0
+    set lines=36 columns=130 " 设置窗口大小
     "set showtabline=2        " 设置显示标签栏  GUI
     "set guioptions-=T        " 取消菜单栏 GUI
-    set lines=36 columns=130 " 设置窗口大小
     "au GUIEnter * simalt ~x  " WINDOWS下全屏
 
     if g:iswindows
-        set guifont=Consolas:h12:b:cANSI " 字体设置  windows
+        set guifont=Consolas:h12:b:cANSI    " 字体设置  windows
     else
-        set guifont=Courier\ 10\ Pitch\ 12 " linux
+        set guifont=FreeMono\ Bold\ 12      " linux
     endif
 else
     set background=dark
