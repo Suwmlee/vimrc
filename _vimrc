@@ -30,23 +30,27 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " Displays tags in a window, ordered by class etc, i used it instead of taglist
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
-"  show tab c-a  like \be  d: delete buf
-Plugin 'szw/vim-ctrlspace'
 
-"comment in a easy way  \cc \cu   like c.vim
-Plugin 'scrooloose/nerdcommenter'
-"search files  c-p
-Plugin 'kien/ctrlp.vim'
-"fast to get      \w  \f
-Plugin 'Lokaltog/vim-easymotion'
-" tabular /|
-Plugin 'godlygeek/tabular'
-" Deal with pairs of punctuations such as (), [], {}, and so on
-Plugin 'kana/vim-smartinput'
 "singlecompile using one key
 Plugin 'xuhdev/SingleCompile'
 "show whitespace   delete call :fixwhitespace
 Plugin 'bronson/vim-trailing-whitespace'
+"comment in a easy way  \cc \cu   like c.vim
+Plugin 'scrooloose/nerdcommenter'
+" tabular /|
+Plugin 'godlygeek/tabular'
+
+"  show tab c-a  like \be  d: delete buf
+Plugin 'szw/vim-ctrlspace'
+"search files  c-p
+Plugin 'kien/ctrlp.vim'
+"fast to get      \w  \f
+Plugin 'Lokaltog/vim-easymotion'
+" marks ma create a   'a goto a   m- delete
+Plugin 'kshenoy/vim-signature'
+
+" Deal with pairs of punctuations such as (), [], {}, and so on
+Plugin 'kana/vim-smartinput'
 """ syntax highlight and complete
 "Syntax check that runs files through external syntax checkers
 Plugin 'scrooloose/syntastic'
