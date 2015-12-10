@@ -10,7 +10,7 @@ if useneocomplete
 
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
     " Disable AutoComplPop.
-    let g:acp_enableAtStartup = 0
+    let g:acp_enableAtStartup = 1
     " Use neocomplete.
     let g:neocomplete#enable_at_startup = 1
     " Use smartcase.
@@ -181,7 +181,7 @@ let g:pydiction_menu_height = 6
 "--------------------------------------------------
 " => single compile
 "--------------------------------------------------
-nmap <F5> :SCCompile<cr>
+"nmap <F5> :SCCompile<cr>
 nmap <F6> :SCCompileRun<cr>
 "let g:SingleCompile_usequickfix = 0
 "--------------------------------------------------

@@ -47,7 +47,7 @@ Plugin 'kien/ctrlp.vim'
 "fast to get      \w  \f
 Plugin 'Lokaltog/vim-easymotion'
 " marks ma create a   'a goto a   m- delete
-Plugin 'kshenoy/vim-signature'
+"Plugin 'kshenoy/vim-signature'
 
 " Deal with pairs of punctuations such as (), [], {}, and so on
 Plugin 'kana/vim-smartinput'
@@ -83,9 +83,9 @@ Plugin 'tpope/vim-surround'
 
 let useneocomplete = 0
 if g:iswindows
-    " Ultimate auto completion system for Vim
-    Plugin 'Shougo/neocomplete.vim'
-    let useneocomplete = 1
+    " Ultimate auto completion system for Vim , need lua+
+    "Plugin 'Shougo/neocomplete.vim'
+    "let useneocomplete = 1
 else
     " YCM need compile
     Plugin 'Valloric/YouCompleteMe'
@@ -206,7 +206,7 @@ autocmd BufRead,BufNewFile *.cshtml :set filetype=html
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "回车即选中当前项
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 set wildmenu  " 增强模式中的命令行自动完成操作
 "set wildmode=list:longest
@@ -277,7 +277,7 @@ nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 "--------------------------------------------------
 " => Import Plugin config
 "--------------------------------------------------
-source ./plugin.vim
+source ~/plugin.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
