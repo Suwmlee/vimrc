@@ -99,9 +99,20 @@ filetype plugin indent on   " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Encoding related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 设置新文件的编码为 UTF-8
 set encoding=utf-8
-set fileencodings=utf-8,gb2312,gbk,gb18030,utf-16
+" 自动判断编码时，依次尝试以下编码：
+set fileencodings=utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set helplang=cn
 set termencoding=utf-8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" 如遇Unicode值大于255的文本，不必等到空格再折行
+set formatoptions+=m
+" 合并两行中文时，不在中间加空格
+set formatoptions+=B
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  基础设置
@@ -253,6 +264,7 @@ noremap <C-e> $
 "--------------------------------------------------
 " =>  Custom KEY
 "--------------------------------------------------
+" Top Toolbar & Menu
 set guioptions-=m
 set guioptions-=T
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
@@ -262,6 +274,9 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+
+" Edit dos M whitespace
+command FixdosM e ++ff=dos<CR>
 
 " Full Window
 map <silent> <F11> :only<CR>

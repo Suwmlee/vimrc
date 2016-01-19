@@ -1,0 +1,104 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Encoding related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+colorscheme desert
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  基础设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set history=500                  " 保留历史记录
+""检测文件类型
+"filetype on
+""针对不同的文件类型采用不同的缩进格式
+"filetype indent on
+""允许插件
+"filetype plugin on
+""启动自动补全
+"filetype plugin indent on
+
+"set nocompatible    "设置不兼容 VI
+"set autoread        "文件修改后自动载入
+
+"备份相关
+"set nobackup                     " 设置不生成备份文件
+"set backup
+"下面两行改变备份文件存放路径
+"set backupdir=~/.vim/backup
+"set directory=~/.vim/backup
+"set backupext=.bak
+
+"set mps+=<:>      " 让<>可以使用%跳转
+set lazyredraw    " do not redraw while executing macros (much faster)
+" Set Number format to null(default is octal) , when press CTRL-A on number
+" like 007, it would not become 010
+set nf=
+
+" In Visual Block Mode, cursor can be positioned where there is no actual character
+set ve=block
+
+"智能文内搜素提示
+set ignorecase " 搜索时忽略大小写
+set smartcase  " 保持字符串的内容，替换字符串的大小写风格.
+set incsearch  " 随着键入及时搜索
+set hlsearch   " 高亮search命中的文本
+
+set mouse=a    " 所有模式鼠标可用
+set autochdir  " 自动切换当前目录为当前文件所在的目录
+
+set title
+"去掉错误提示音
+set novisualbell
+set noerrorbells
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  展示/排版等界面格式设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set shortmess=atI  " 启动不显示索马里儿童提示
+set t_Co=256       " Use 256 colors
+set nu         " 显示行号
+"set relativenumber " 显示相对行号
+""突出显示当前行
+"set cursorcolumn
+"set cursorline
+
+" set list "设置末尾为 $  提示
+" set listchars=tab:\|\ , 显示Tab符，使用一高亮竖线代替
+
+" 自动缩进
+set smartindent
+set autoindent                   
+
+"代码折叠
+set foldenable
+" 折叠方法
+" manual    手工折叠
+" indent    使用缩进表示折叠
+" expr      使用表达式定义折叠
+" syntax    使用语法定义折叠
+" diff      对没有更改的文本进行折叠
+" marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
+set foldmethod=indent           " set default foldmethod
+
+"Tab related
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab     " 使用空格替换Tab
+
+" always have status-line'
+"set laststatus=2
+
+"set ruler
+set showcmd               " 在状态栏显示正确输入命令
+set showmode              " show current mode
+set showmatch             " 括号配对
+
+set scrolloff=7           " 在光标接近底端或顶端时，自动下滚或上滚
+set shiftround            " use multiple of shiftwidth when indenting with '<' and '>'
+set hidden                " allow to change buffer without saving
+set ttyfast
+"set nowrap                " 设置不自动换行
+"set linebreak     " 整词换行，与自动换行搭配使用
