@@ -41,11 +41,11 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 
 "  show tab c-a  like \be  d: delete buf
-Plugin 'szw/vim-ctrlspace'
+Plugin 'vim-ctrlspace/vim-ctrlspace'
 "search files  c-p
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 "fast to get      \w  \f
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 " marks ma create a   'a goto a   m- delete
 "Plugin 'kshenoy/vim-signature'
 
@@ -55,13 +55,8 @@ Plugin 'kana/vim-smartinput'
 "Syntax check that runs files through external syntax checkers
 Plugin 'scrooloose/syntastic'
 
-" c++ IDE
-Plugin 'c.vim'
-"syntax c++ and qt
-Plugin 'cpp.vim--Skvirsky'
-" Improved C++ STL syntax highlighting
-Plugin 'STL-Syntax'
-Plugin 'STL-improved'
+" Improved C++ syntax highlighting
+Plugin 'vim-cpp-enhanced-highlight'
 
 "Python
 " Tab 补全

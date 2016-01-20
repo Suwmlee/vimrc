@@ -3,6 +3,14 @@
 "
 "        Plugins Config
 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  判断操作系统
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:iswindows = 0
+endif
 "--------------------------------------------------
 " => neocomplete
 "--------------------------------------------------
@@ -187,37 +195,67 @@ nmap <F6> :SCCompileRun<cr>
 "--------------------------------------------------
 " => Ctrlp
 "--------------------------------------------------
-"let g:ctrlp_working_path_mode=0
-"let g:ctrlp_clear_cache_on_exit=0
-"let g:ctrlp_cache_dir=$HOME.'/.vim/.cache/ctrlp'
-"let g:ctrlp_extensions=['tag', 'buffertag', 'quickfix', 'dir', 'rtscript']
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
-"set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+  \ 'link': 'some_bad_symbolic_links',}
 
-let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+if g:iswindows
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    let g:ctrlp_user_command = {
+      \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+      \ 'fallback': 'dir %s /-n /b /s /a-d'
+      \ }
+else
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    let g:ctrlp_user_command = {
+      \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+      \ 'fallback': 'find %s -type f'
+      \ }
+endif
 "--------------------------------------------------
 " => vim-ctrlspace
 "--------------------------------------------------
+if has("gui_running")
+    " Settings for Inconsolata font
+    let g:CtrlSpaceSymbols = { "CS": "#", "All": "All", "WLoad": "|*|", "WSave": "[*]","Zoom": "*",}
+endif
+
 let g:CtrlSpaceUseTabline = 0
 let g:ctrlspace_default_mapping_key = "<C-a>"
+" use ctrlp
+"nnoremap <silent><C-p> :CtrlSpace O<CR>
+
 :map <C-a>  :CtrlSpace<CR>
 
 "--------------------------------------------------
 " =>  easymotion
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 "--------------------------------------------------
 " =>  tabular
 "--------------------------------------------------
