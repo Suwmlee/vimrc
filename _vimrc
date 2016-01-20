@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-"    自用Vim配置文件
+"    Vim配置文件
 "       简单、实用  :)
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +97,7 @@ filetype plugin indent on   " required!
 " 设置新文件的编码为 UTF-8
 set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
-set fileencodings=utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set helplang=cn
 set termencoding=utf-8
 
@@ -143,9 +143,12 @@ set autochdir  " 自动切换当前目录为当前文件所在的目录
 
 set title
 "去掉错误提示音
-set visualbell      "会闪屏
+set visualbell
 set noerrorbells
+set novisualbell
+set t_vb=
 set noeb
+set tm=500
 
 set confirm         "处理未保存的文件需要确认"
 set noswapfile      "不生成swap文件"
@@ -217,8 +220,7 @@ inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 set wildmenu  " 增强模式中的命令行自动完成操作
 "set wildmode=list:longest
 " Ignore compiled files
-set wildignore=*.o,*~,*.pyc,*.class
-
+set wildignore=*.o,*~,*.pyc,*.class,*.swp,*.bak,.svn,.git
 " Remember info about open buffers on close"
 set viminfo^=%
 
@@ -271,7 +273,7 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
     \endif<CR>
 
 " Edit dos M whitespace
-command FixdosM e ++ff=dos<CR>
+command! FixdosM e ++ff=dos<CR>
 
 " Full Window
 map <silent> <F11> :only<CR>

@@ -1,8 +1,8 @@
-自用Vim配置文件 :)
+Vim配置文件 :)
 
-Install and Setup 
+Install and Setup
 ----------------------------------
-###1.Install   vim 
+###1.Install   vim
 [Download Vim](http://www.vim.org/download.php)
 
 ###2.Install Git
@@ -23,9 +23,15 @@ Vimrc :   `git clone https://github.com/Suwmlee/vimrc.git  ~/vims/`<br />
 
 Keys:
 
-`F5`  : single compile <br />
-`F6`  : gdb    (-g -o)<br />
-`F7`  : single compile run<br />
-`F8`  : NERDTree and Tagbar<br />
+`F2`  : show/hide menu & toolbar<br />
+`F6`  : single compile<br />
+`F7`  : TagBar<br />
+`F8`  : NERDTree<br />
+`F11`  : Fullwindow<br />
+
+`C-a` : ctrlspace<br />
+`C-p` : ctrlp<br />
+`C-e` : line end<br />
+`\-w` : Move to word<br />
 `map` : (for all keymaps)
 
