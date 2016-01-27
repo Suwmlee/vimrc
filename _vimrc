@@ -6,23 +6,21 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Import Plugin config
 "--------------------------------------------------
-if filereadable(expand("~/plugin.vim"))
-    source ~/plugin.vim
+if filereadable(expand("~/.plugins.vim"))
+    source ~/.plugins.vim
 endif
 "--------------------------------------------------
-" Encoding related
+" Encoding
 "--------------------------------------------------
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-set helplang=cn
+set fileencodings=utf-8,ucs-bom,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set termencoding=utf-8
 
-" Use Unix as the standard file type
+" use Unix as the standard file type
 set ffs=unix,dos,mac
-
-" 如遇Unicode值大于255的文本，不必等到空格再折行
+" break at a multi-byte character above 255.
 set formatoptions+=m
-" 合并两行中文时，不在中间加空格
+" don't insert a space between two multi-byte characters.
 set formatoptions+=B
 "--------------------------------------------------
 " Appearance
@@ -32,14 +30,21 @@ if(has("win32") || has("win64") || has("win95") || has("win16"))
 else
     let g:iswindows = 0
 endif
-" display somalia
+" avoid the intro message on startup
 set shortmess=atI
 set t_Co=256
-" windows contains
+" vim windows contains
 set lines=36 columns=130
 " set showtabline=2
+" set ruler
+set title
 set number
 set cursorline
+" always have status-line'
+set laststatus=2
+" top Toolbar & menu bar
+set guioptions-=m
+set guioptions-=T
 
 if g:iswindows
     set guifont=Consolas:h12:b:cANSI
@@ -52,13 +57,20 @@ syntax on
 "--------------------------------------------------
 " Configuration
 "--------------------------------------------------
+set nocompatible
 " keep history
 set history=500
-set nocompatible
 " autoload after modified
 set autoread
 " unsave file confirm
 set confirm
+"set mouse=a    " mouse enable
+set mouse-=a   " mouse disabled
+set autochdir  " auto change dir
+" do not redraw while executing macros (much faster)
+set lazyredraw
+" in visual block mode, cursor can be positioned where there is no actual character
+set virtualedit=block
 
 set nobackup
 set noswapfile
@@ -68,103 +80,65 @@ set noswapfile
 "set directory=~/.vim/backup
 "set backupext=.bak
 
-" 让<>可以使用%跳转
-"set mps+=<:>
-set lazyredraw    " do not redraw while executing macros (much faster)
-" Set Number format to null(default is octal) , when press CTRL-A on number
-" like 007, it would not become 010
-set nf=
+" search
+set ignorecase
+set smartcase
+set incsearch  " search without delay
+set hlsearch   " highlight search txt
 
-" In Visual Block Mode, cursor can be positioned where there is no actual character
-set ve=block
-
-" 智能文内搜素提示
-set ignorecase " 搜索时忽略大小写
-set smartcase  " 保持字符串的内容，替换字符串的大小写风格.
-set incsearch  " 随着键入及时搜索
-set hlsearch   " 高亮search命中的文本
-"set mouse=a    " 鼠标可用
-set mouse-=a    " 鼠标不可用
-set autochdir  " 自动切换当前目录为当前文件所在的目录
-
-set title
-" 去掉错误提示音
-set visualbell
-set noerrorbells
+" remove wrong bell ring
+"set belloff = all
+set visualbell t_vb=
 set novisualbell
-set t_vb=
-set noeb
-set tm=500
+set noerrorbells
 
-" 自动缩进
 set smartindent
 set autoindent
 
 set foldenable
-" 折叠方法
-" manual    手工折叠
-" indent    使用缩进表示折叠
-" expr      使用表达式定义折叠
-" syntax    使用语法定义折叠
-" diff      对没有更改的文本进行折叠
-" marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
 set foldmethod=indent         " set default foldmethod
 
-" Tab related
+" <Tab> related
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-" 使用空格替换Tab
+" use the appropriate number of spaces to insert a <Tab>
 set expandtab
 
-" always have status-line'
-set laststatus=2
-
-" set ruler
-" 在状态栏显示正确输入命令
+" show right command in status-line
 set showcmd
-" show current mode
+" show current mode in status-line
 set showmode
-" 括号配对
+" match bracket
 set showmatch
-" 在光标接近底端或顶端时，自动下滚或上滚
+" auto scroll when cursor in top or bottom
 set scrolloff=4
 " use multiple of shiftwidth when indenting with '<' and '>'
 set shiftround
 " allow to change buffer without saving
 set hidden
 set ttyfast
-" 设置不自动换行
 set nowrap
-
-autocmd BufRead,BufNewFile *.xaml :set filetype=xml
-autocmd BufRead,BufNewFile *.cshtml :set filetype=html
-
-" 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" 回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-
-" 增强模式中的命令行自动完成操作
+" command-line completion operates in an enhanced mode
 set wildmenu
 "set wildmode=list:longest
-" Ignore compiled files
+" ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.class,*.swp,*.bak,.svn,.git
-" Remember info about open buffers on close"
+" remember info about open buffers on close"
 set viminfo^=%
-
-" For regular expressions turn magic on
+" for regular expressions turn magic on
 set magic
 
-" Configure backspace so it acts as it should act
-" 设置退格键可用
+" configure backspace so it acts as it should act
 "set backspace=2
 set backspace=eol,start,indent
 
+" auto close preview window when leave insert-mode
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 "--------------------------------------------------
-" => hotkey
+" => Shortcut KEY
 "--------------------------------------------------
-" Switching between buffers.
+" switching between buffers.
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
@@ -173,26 +147,27 @@ inoremap <C-h> <Esc><C-W>h
 inoremap <C-j> <Esc><C-W>j
 inoremap <C-k> <Esc><C-W>k
 inoremap <C-l> <Esc><C-W>l
-" Set Up and Down non-linewise
+" set Up and Down non-linewise
 noremap <Up> gk
 noremap <Down> gj
-" Fast remove highlight search
+" fast remove highlight search
 nmap <silent> <leader><cr> :noh<cr>
 noremap <C-e> <END>
 nnoremap ; :
+" copy to clipboard
 vnoremap <Leader>y "+y
+" paste from clipboard
 nmap <Leader>p "+gP
-"command! Past "+gP
 
-" Quickly edit/reload the vimrc file
+" quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" chose the current option when press 'ENTER'
+inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 "--------------------------------------------------
 " =>  Custom KEY
 "--------------------------------------------------
-" Top Toolbar & Menu
-set guioptions-=m
-set guioptions-=T
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions-=T <Bar>
         \set guioptions-=m <bar>
@@ -207,11 +182,17 @@ command! FixdosM e ++ff=dos<CR>
 " Full Window
 map <silent> <F11> :only<CR>
 "--------------------------------------------------
-" => ctags
+" => Ctags
 "--------------------------------------------------
 " open ctags entries in a new tab
 set tags=tags;/
 nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+"--------------------------------------------------
+" => Load files in a skeleton file
+"--------------------------------------------------
+autocmd BufRead,BufNewFile *.xaml :set filetype=xml
+autocmd BufRead,BufNewFile *.cshtml :set filetype=html
+autocmd BufNewFile,BufRead \*.{md,mdwn,mkd,mkdn,mark\*} set filetype=markdown
 "--------------------------------------------------
 " =>  END
 "--------------------------------------------------

@@ -14,8 +14,9 @@ endif
 "--------------------------------------------------
 " Custom Settings
 let useYoucompleteme = 1
+
 "--------------------------------------------------
-" vundle begin
+" Vundle begin
 "--------------------------------------------------
 " not support VI
 set nocompatible
@@ -24,10 +25,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
-" Plugins
+" Custom plugins bellow
 
 if useYoucompleteme == 0
-    " Ultimate auto completion system for Vim , need lua+
+    " ultimate auto completion system for Vim , need lua+
     " just add lua52.dll in VIM folder
     Plugin 'Shougo/neocomplete.vim'
 endif
@@ -39,13 +40,13 @@ endif
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'bling/vim-airline'
-" Visually display indent levels in Vim   colors
+" visually display indent levels in Vim   colors
 Plugin 'nathanaelkane/vim-indent-guides'
 
-" Displays tags in a window, ordered by class etc, i used it instead of taglist
+" displays tags in a window, ordered by class etc
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
-" show tab c-a  like \be  d: delete buf
+" show tab c-a   d: delete buf
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 " search files  c-p
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -60,28 +61,14 @@ Plugin 'godlygeek/tabular'
 " marks ma create a   'a goto a   m- delete
 "Plugin 'kshenoy/vim-signature'
 
-" Deal with pairs of punctuations such as (), [], {}, and so on
+" deal with pairs of punctuations such as (), [], {}, and so on
 Plugin 'kana/vim-smartinput'
-" syntax highlight and complete
-" Syntax check that runs files through external syntax checkers
+" syntax check that runs files through external syntax checkers
 Plugin 'scrooloose/syntastic'
 
-" Improved C++ syntax highlighting
+" improved C++ syntax highlighting
 Plugin 'vim-cpp-enhanced-highlight'
 
-"Python
-" Tab complete
-Plugin 'rkulla/pydiction'
-" Highlight
-Plugin 'hdima/python-syntax'
-" doc lin  syn  check need compiled with python+
-"Plugin 'klen/python-mode'
-
-" HTML highlight
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'nono/jquery.vim'
-Plugin 'elzr/vim-json'
 " xml html complete
 Plugin 'docunext/closetag.vim'
 " html xml ...  cs  repeate
@@ -89,9 +76,9 @@ Plugin 'tpope/vim-surround'
 
 " singlecompile using one key
 Plugin 'xuhdev/SingleCompile'
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
+" track the engine.
+"Plugin 'SirVer/ultisnips'
+" snippets are separated from the engine. Add this if you want them:
 "Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
@@ -100,7 +87,7 @@ filetype plugin indent on
 "--------------------------------------------------
 " vundle end
 "--------------------------------------------------
-" => neocomplete
+" => Neocomplete
 "--------------------------------------------------
 if useYoucompleteme == 0
 
@@ -202,42 +189,37 @@ if useYoucompleteme == 1
     let g:ycm_key_list_select_completion = ['<Down>']
     let g:ycm_key_list_previous_completion = ['<Up>']
     let g:ycm_complete_in_comments = 1
-    " 提示UltiSnips
+    " reminder UltiSnips
     let g:ycm_use_ultisnips_completer = 1
-    " 注释和字符串中的文字也会被收入补全
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
     let g:ycm_collect_identifiers_from_tags_files = 1
-    " 开启语法关键字补全
+    " enable syntactic keywords complete
     let g:ycm_seed_identifiers_with_syntax=1
-    " 诊断功能 显示文字高亮和>>提示
     "let g:ycm_enable_diagnostic_signs = 0
     "let g:ycm_enable_diagnostic_highlighting = 0
-    " 语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
+    " language keywords complete
     "let g:ycm_seed_identifiers_with_syntax=1
 
-    " 跳转到定义处, 分屏打开
     let g:ycm_goto_buffer_command = 'horizontal-split'
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
-    " 引入，可以补全系统，以及python的第三方包
+    " load extra conf.py
     if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
         let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
     endif
 
-    " 直接触发自动补全 insert模式下
     " let g:ycm_key_invoke_completion = '<C-Space>'
-    " 黑名单,不启用
     let g:ycm_filetype_blacklist = {
         \ 'tagbar' : 1,
         \ 'gitcommit' : 1,
         \}
 endif
 "--------------------------------------------------
-" => NERDTree options   Tagbar options
+" => NerdTree options   Tagbar options
 "--------------------------------------------------
-" Auto change the root directory
+" auto change the root directory
 let NERDTreeChDirMode=2
 let NERDTreeWinPos="right"
 let g:NERDTreeWinSize = 24
@@ -286,28 +268,33 @@ endfunction
 
 nmap <F7> :call ToggleTagBar()<CR>
 nmap <F8> :call ToggleNERDTree()<CR>
-"nmap <F7> :call ToggleNERDTreeAndTagbar()<CR>
-
 "--------------------------------------------------
 " => Syntastic
 "--------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:syntastic_error_symbol='>>'
+let g:syntastic_warning_symbol='>'
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_enable_highlighting=1
 
-let g:syntastic_always_populate_loc_list = 1
+" error code: http://pep8.readthedocs.org/en/latest/intro.html#error-codes
+let g:syntastic_python_checkers=['python','pyflakes', 'pep8']
+let g:syntastic_python_pep8_args='--ignore=E501,E225,E124,E712'
+
+" if js
+" let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+" let g:syntastic_html_checkers=['tidy', 'jshint']
+
+" to see error location list
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
 
+" disabled in java, to be faster
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
 "let g:syntastic_python_python_exec =
 "--------------------------------------------------
-" => Python
-"--------------------------------------------------
-let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
-let g:pydiction_menu_height = 6
-"--------------------------------------------------
-" => single compile
+" => Single compile
 "--------------------------------------------------
 "nmap <F5> :SCCompile<cr>
 nmap <F6> :SCCompileRun<cr>
@@ -315,41 +302,40 @@ nmap <F6> :SCCompileRun<cr>
 "--------------------------------------------------
 " => UltiSnips
 "--------------------------------------------------
-" Trigger configuration. Do not use <tab> if you use YouCompleteMe.
+" trigger configuration. Do not use <tab> if you use YouCompleteMe.
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsExpandTrigger       = "<tab>"
 let g:UltiSnipsJumpForwardTrigger  = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" 定义存放代码片段的文件夹 .vim/UltiSnips下，使用自定义和默认的，将会的到全局，有冲突的会提示
+" define custom folder under .vim/UltiSnips ,
 "let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
 "let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
-" 进入对应filetype的snippets进行编辑
+" edit snippets with the correct filetype
 map <leader>us :UltiSnipsEdit<CR>
 
-" ctrl+j/k 进行选择
-func! g:JInYCM()
-    if pumvisible()
-        return "\<C-n>"
-    else
-        return "\<c-j>"
-    endif
-endfunction
+"" ctrl+j/k to chose
+"func! g:JInYCM()
+    "if pumvisible()
+        "return "\<C-n>"
+    "else
+        "return "\<c-j>"
+    "endif
+"endfunction
 
-func! g:KInYCM()
-    if pumvisible()
-        return "\<C-p>"
-    else
-        return "\<c-k>"
-    endif
-endfunction
-inoremap <c-j> <c-r>=g:JInYCM()<cr>
-au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
-let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
+"func! g:KInYCM()
+    "if pumvisible()
+        "return "\<C-p>"
+    "else
+        "return "\<c-k>"
+    "endif
+"endfunction
+"inoremap <c-j> <c-r>=g:JInYCM()<cr>
+"au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
+"let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
 
-" If you want :UltiSnipsEdit to split your window.
+" if you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
 "--------------------------------------------------
 " => Ctrlp
 "--------------------------------------------------
@@ -382,7 +368,7 @@ else
       \ }
 endif
 "--------------------------------------------------
-" => vim-ctrlspace
+" => Ctrlspace
 "--------------------------------------------------
 if has("gui_running")
     " Settings for Inconsolata font
@@ -395,7 +381,7 @@ let g:ctrlspace_default_mapping_key = "<C-a>"
 "nnoremap <silent><C-p> :CtrlSpace O<CR>
 map <C-a>  :CtrlSpace<CR>
 "--------------------------------------------------
-" =>  easymotion
+" =>  Easymotion
 "--------------------------------------------------
 let g:EasyMotion_leader_key = '<Leader>'
 " <Leader>f{char} to move to {char}
