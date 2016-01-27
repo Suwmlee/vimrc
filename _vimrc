@@ -6,8 +6,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Import Plugin config
 "--------------------------------------------------
-if filereadable(expand("~/.plugins.vim"))
-    source ~/.plugins.vim
+if filereadable(expand("~/.vimrc.plugins"))
+    source ~/.vimrc.plugins
+else
+    echo "Do not detect '~/.vimrc.plugins' file "
 endif
 "--------------------------------------------------
 " Encoding
