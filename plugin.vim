@@ -58,6 +58,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'scrooloose/nerdcommenter'
 " tabular /|
 Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+Plugin 'MikeCoder/markdown-preview.vim'
 " marks ma create a   'a goto a   m- delete
 "Plugin 'kshenoy/vim-signature'
 
@@ -69,10 +71,14 @@ Plugin 'scrooloose/syntastic'
 " improved C++ syntax highlighting
 Plugin 'vim-cpp-enhanced-highlight'
 
+" html
+Plugin 'mattn/emmet-vim'
 " xml html complete
 Plugin 'docunext/closetag.vim'
 " html xml ...  cs  repeate
 Plugin 'tpope/vim-surround'
+" javascript complete
+Plugin 'pangloss/vim-javascript'
 
 " singlecompile using one key
 Plugin 'xuhdev/SingleCompile'
@@ -398,6 +404,17 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+"--------------------------------------------------
+" => Markdown
+"--------------------------------------------------
+let g:vim_markdown_folding_disabled = 1
+"--------------------------------------------------
+" => Html + Javascript
+"--------------------------------------------------
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+let g:closetag_html_style = 1
 "--------------------------------------------------
 " => Indent Guides
 "--------------------------------------------------
