@@ -23,10 +23,10 @@ Vimrc : [Install ctags][3]
 
 ###4.Repalce vimrc file and PluginInstall
 
-Repalce vimrc & add plugin.vim
+Repalce vimrc & add .vimrc.plugins
 ```sh
 cp ~/.vim/vimrc/_vimrc  ~/.vimrc
-cp ~/.vim/vimrc/plugin.vim  ~/
+cp ~/.vim/vimrc/.vimrc.plugins  ~/
 ```
 Start vim and type:
 ```vim
