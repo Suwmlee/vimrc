@@ -59,7 +59,7 @@ Plugin 'scrooloose/nerdcommenter'
 " tabular /|
 Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
-Plugin 'MikeCoder/markdown-preview.vim'
+Plugin 'iamcco/markdown-preview.vim'
 " marks ma create a   'a goto a   m- delete
 "Plugin 'kshenoy/vim-signature'
 
@@ -408,6 +408,13 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " => Markdown
 "--------------------------------------------------
 let g:vim_markdown_folding_disabled = 1
+
+" path to the chrome or the command to open chrome
+let g:mkdp_path_to_chrome = "chrome"
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_open = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
 "--------------------------------------------------
 " => Html + Javascript
 "--------------------------------------------------
