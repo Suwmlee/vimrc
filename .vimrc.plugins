@@ -51,6 +51,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 " search files  c-p
 Plugin 'ctrlpvim/ctrlp.vim'
+" search code
+Plugin 'rking/ag.vim'
 " fast to get      \w  \f
 Plugin 'easymotion/vim-easymotion'
 " show whitespace   delete call :fixwhitespace
@@ -391,6 +393,11 @@ else
       \ 'fallback': 'find %s -type f'
       \ }
 endif
+"--------------------------------------------------
+" => Ag
+"--------------------------------------------------
+let g:ag_prg="ag --vimgrep -i --ignore bin --ignore obj"
+let g:ag_highlight=1
 "--------------------------------------------------
 " => Ctrlspace
 "--------------------------------------------------
