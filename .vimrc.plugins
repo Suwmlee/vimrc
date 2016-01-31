@@ -42,6 +42,7 @@ Plugin 'tomasr/molokai'
 Plugin 'bling/vim-airline'
 " visually display indent levels in Vim   colors
 Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'ryanoasis/vim-devicons'
 
 " displays tags in a window, ordered by class etc
 Plugin 'majutsushi/tagbar'
@@ -274,6 +275,23 @@ endfunction
 
 nmap <F7> :call ToggleTagBar()<CR>
 nmap <F8> :call ToggleNERDTree()<CR>
+"--------------------------------------------------
+" => Vim-devicons
+"--------------------------------------------------
+let g:NERDTreeRespectWildIgnore=1
+
+let g:NERDTreeDirArrows=0
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_unite = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeGitPluginForceVAlign=1
 "--------------------------------------------------
 " => Syntastic
 "--------------------------------------------------

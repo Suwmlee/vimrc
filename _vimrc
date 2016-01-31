@@ -49,9 +49,11 @@ set guioptions-=m
 set guioptions-=T
 
 if g:iswindows
-    set guifont=Consolas:h12:b:cANSI
+    "set guifont=Consolas:h12:b:cANSI
+    set guifont=Fura_Mono_Medium_for_Powerline:h11:cANSI
 else
-    set guifont=FreeMono\ Bold\ 12
+    "set guifont=FreeMono\ Bold\ 12
+    set guifont=Aurulent\ Sans\ Mono\ 11
 endif
 
 syntax enable
