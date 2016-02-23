@@ -2,27 +2,22 @@ Vimrc :)
 
 Install and Setup
 ----------------------------------
-###1.Install VIM
+### 1.Install VIM
 [Download Vim][0]<br />
-Make sure include python+ feature
+(with python+ feature)
 
-###2.Install Git
-
+### 2.Install Git
 [Github for windows][1]<br />
 [Git Download][2]<br />
-Remember Add `environment variable` to PATH
+Notice: add `variable` to `PATH`
 
-###3.Download vundle and vimrc
-
+### 3.Download vundle and vimrc
 Use `git` to download repositories :
 ```sh
 git clone https://github.com/VundleVim/Vundle.vim  ~/.vim/bundle/vundle
 git clone https://github.com/Suwmlee/vimrc.git  ~/.vim/vimrc
 ```
-Vimrc : [Install ctags][3]
-
-###4.Repalce vimrc file and PluginInstall
-
+### 4.Repalce vimrc file and PluginInstall
 Repalce vimrc & add .vimrc.plugins
 ```sh
 cp ~/.vim/vimrc/_vimrc  ~/.vimrc
@@ -38,11 +33,18 @@ You can also use another plugin `neocomplete.vim`. just set
 ```vim
 let useYoucompleteme = 0
 ```
-in `plugin.vim` which you just added.
+in `plugin.vim` which you just added in `~/`.
+
+### 5.Third part extentions needed setup
+[Nerd-fonts][8] for [vim-devicons][9]<br />
+The default font you can find in 'Fonts' folder
+
+[The_silver_searcher][7] for [ag.vim][10]<br />
+[Ctags][3] for [tagbar][11]<br />
+Windows version placed in 'WindowsExt' folder
 
 <a name="compileycm"></a>
-
-##Compile YouCompleteMe
+## Compile YouCompleteMe
 
 Go to [YouCompleteMe][4] and compile it by its installation steps
 
@@ -62,8 +64,7 @@ in the 4th part of [full-installation-guide][6]. Find the default version which
 are used in `YouCompleteMe\third_party\ycmd\build.py`. Just search for
 `Studio Version`. Change to your version is valid.
 
-##Tips
-
+## Tips
 HotKeys:
 
 `F2`  : Show/hide menu & toolbar<br />
@@ -85,3 +86,8 @@ HotKeys:
 [4]: https://github.com/Valloric/YouCompleteMe
 [5]: http://vimdoc.sourceforge.net/htmldoc/if_pyth.html#python-dynamic
 [6]: https://github.com/Valloric/YouCompleteMe#full-installation-guide
+[7]: https://github.com/ggreer/the_silver_searcher
+[8]: https://github.com/ryanoasis/nerd-fonts
+[9]: https://github.com/ryanoasis/vim-devicons
+[10]: https://github.com/rking/ag.vim
+[11]: https://github.com/majutsushi/tagbar
