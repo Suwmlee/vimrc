@@ -68,8 +68,7 @@ set history=500
 set autoread
 " unsave file confirm
 set confirm
-"set mouse=a    " mouse enable
-set mouse-=a   " mouse disabled
+set mouse=a    " mouse enable
 set autochdir  " auto change dir
 " do not redraw while executing macros (much faster)
 set lazyredraw
