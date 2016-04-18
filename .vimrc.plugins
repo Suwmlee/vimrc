@@ -84,9 +84,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'pangloss/vim-javascript'
 
 " track the engine.
-"Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
+
 " git wrapper for vim
 Plugin 'tpope/vim-fugitive'
 
@@ -322,37 +323,15 @@ let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
 "--------------------------------------------------
 " => UltiSnips
 "--------------------------------------------------
-" trigger configuration. Do not use <tab> if you use YouCompleteMe.
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " define custom folder under .vim/UltiSnips ,
 "let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
 "let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 " edit snippets with the correct filetype
 map <leader>us :UltiSnipsEdit<CR>
-
-"" ctrl+j/k to chose
-"func! g:JInYCM()
-    "if pumvisible()
-        "return "\<C-n>"
-    "else
-        "return "\<c-j>"
-    "endif
-"endfunction
-
-"func! g:KInYCM()
-    "if pumvisible()
-        "return "\<C-p>"
-    "else
-        "return "\<c-k>"
-    "endif
-"endfunction
-"inoremap <c-j> <c-r>=g:JInYCM()<cr>
-"au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
-"let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
 
 " if you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
