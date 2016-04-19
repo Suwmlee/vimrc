@@ -14,7 +14,7 @@ endif
 "--------------------------------------------------
 " Custom Settings
 let useYoucompleteme = 1
-
+let useNeocomplete = 0
 "--------------------------------------------------
 " Vundle begin
 "--------------------------------------------------
@@ -27,9 +27,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " Custom plugins bellow
 
-if useYoucompleteme == 0
+if useNeocomplete == 1
     " ultimate auto completion system for Vim , need lua+
-    " just add lua52.dll in VIM folder
+    " just add lua5x.dll in VIM folder
     Plugin 'Shougo/neocomplete.vim'
 endif
 if useYoucompleteme == 1
@@ -99,8 +99,7 @@ filetype plugin indent on
 "--------------------------------------------------
 " => Neocomplete
 "--------------------------------------------------
-if useYoucompleteme == 0
-
+if useNeocomplete == 1
     " Disable AutoComplPop.
     let g:acp_enableAtStartup = 0
     " Use neocomplcache.
@@ -194,7 +193,6 @@ endif
 " => YouCompleteMe options
 "--------------------------------------------------
 if useYoucompleteme == 1
-
     " youcompleteme defaul tab s-tab have conflict in autocomplete
     let g:ycm_key_list_select_completion = ['<Down>']
     let g:ycm_key_list_previous_completion = ['<Up>']
