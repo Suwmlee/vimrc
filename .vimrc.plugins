@@ -325,9 +325,9 @@ let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" define custom folder under .vim/UltiSnips ,
-"let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
-"let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+" define custom folder under .vim/vimrc/UltiSnips ,
+set runtimepath+=~/.vim/vimrc/
+let g:UltiSnipsSnippetsDir = '~/.vim/vimrc/UltiSnips'
 " edit snippets with the correct filetype
 map <leader>us :UltiSnipsEdit<CR>
 
