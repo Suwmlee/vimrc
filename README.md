@@ -40,7 +40,7 @@ __Attention__: only one autocomplete plugin is available
 All used plugins
 ----
 | Plugin                          | Description                               |
-| --                              | ----                                      |
+| ----                            | ----                                      |
 | Shougo/neocomplete.vim          | autocomplete (need lua)                   |
 | Valloric/YouCompleteMe          | autocomplete (need compiled)              |
 | vim-colors-solarized            | GUI colorscheme                           |
@@ -71,7 +71,7 @@ All used plugins
 Third part extentions
 ----
 | plugin            | extentions               |
-| -                 | ----                     |
+| ----              | ----                     |
 | [tagbar][11]      | [Ctags][3]               |
 | [vim-devicons][9] | [Nerd-fonts][8]          |
 | [ag.vim][10]      | [The_silver_searcher][7] |
@@ -104,7 +104,7 @@ _Studio Version_. Just change the version in the file is valid .
 ## Tips
 
 | HotKeys | Function                 |
-| --      | ----                     |
+| ----    | ----                     |
 | F2      | Show/hide menu & toolbar |
 | F7      | Tagbar                   |
 | F8      | NerdTree                 |
