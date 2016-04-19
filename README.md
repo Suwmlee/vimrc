@@ -37,7 +37,38 @@ in _.vimrc.plugins_ which you just added in `~/`.
 
 __Attention__: only one autocomplete plugin is available
 
-Third part extentions needed setup
+All used plugins
+----
+| Plugin                          | Description                               |
+| --                              | ----                                      |
+| Shougo/neocomplete.vim          | autocomplete (need lua)                   |
+| Valloric/YouCompleteMe          | autocomplete (need compiled)              |
+| vim-colors-solarized            | GUI colorscheme                           |
+| tomasr/molokai                  | Terminal colorscheme                      |
+| vim-airline/vim-airline         | status/tabline                            |
+| nathanaelkane/vim-indent-guides | display indent levels                     |
+| ryanoasis/vim-devicons          | add font icons                            |
+| majutsushi/tagbar               | displays tags in a window                 |
+| scrooloose/nerdtree             | filesystem window                         |
+| vim-ctrlspace/vim-ctrlspace     | show tabs                                 |
+| ctrlpvim/ctrlp.vim              | file,buffer,... finder                    |
+| rking/ag.vim                    | a code searching tool                     |
+| easymotion/vim-easymotion       | fast to get word location                 |
+| bronson/vim-trailing-whitespace | show/delete whitespace                    |
+| scrooloose/nerdcommenter        | comment in a easy way                     |
+| godlygeek/tabular               | text aligning                             |
+| iamcco/markdown-preview.vim     | Real-time markdown preview                |
+| kana/vim-smartinput             | deal with pairs of punctuations like '()' |
+| scrooloose/syntastic            | syntax check                              |
+| mattn/emmet-vim                 | html                                      |
+| docunext/closetag.vim           | xml html complete                         |
+| tpope/vim-surround              | html xml ...  cs  repeate                 |
+| pangloss/vim-javascript         | javascript complete                       |
+| SirVer/ultisnips                | Snippets                                  |
+| honza/vim-snippets              | useful snippets for vim                   |
+| tpope/vim-fugitive              | git wrapper for vim                       |
+
+Third part extentions
 ----
 | plugin            | extentions               |
 | -                 | ----                     |
