@@ -39,7 +39,7 @@ endif
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 " visually display indent levels in Vim   colors
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'ryanoasis/vim-devicons'
@@ -72,7 +72,7 @@ Plugin 'kana/vim-smartinput'
 Plugin 'scrooloose/syntastic'
 
 " improved C++ syntax highlighting
-Plugin 'vim-cpp-enhanced-highlight'
+"Plugin 'vim-cpp-enhanced-highlight'
 
 " html
 Plugin 'mattn/emmet-vim'
