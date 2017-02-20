@@ -51,7 +51,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 " search files  c-p
 Plugin 'ctrlpvim/ctrlp.vim'
-" search code
+" search words/code
 Plugin 'rking/ag.vim'
 " fast to get      \w  \f
 Plugin 'easymotion/vim-easymotion'
@@ -71,17 +71,20 @@ Plugin 'kana/vim-smartinput'
 " syntax check that runs files through external syntax checkers
 Plugin 'scrooloose/syntastic'
 
-" improved C++ syntax highlighting
-"Plugin 'vim-cpp-enhanced-highlight'
+" A solid language pack for Vim ( syntax).
+Plugin 'sheerun/vim-polyglot'
 
-" html
-Plugin 'mattn/emmet-vim'
 " xml html complete
 Plugin 'docunext/closetag.vim'
+" html
+"Plugin 'mattn/emmet-vim'
 " html xml ...  cs  repeate
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 " javascript complete
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
+
+" Scala support
+Plugin 'derekwyatt/vim-scala'
 
 " track the engine.
 Plugin 'SirVer/ultisnips'
@@ -401,7 +404,7 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 "--------------------------------------------------
-" => Markdown
+" => Markdown markdown-preview.vim
 "--------------------------------------------------
 let g:vim_markdown_folding_disabled = 1
 
@@ -411,13 +414,6 @@ let g:mkdp_auto_start = 0
 let g:mkdp_auto_open = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
-"--------------------------------------------------
-" => Html + Javascript
-"--------------------------------------------------
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1 = "inc"
-let g:closetag_html_style = 1
 "--------------------------------------------------
 " => Indent Guides
 "--------------------------------------------------

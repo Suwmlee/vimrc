@@ -63,7 +63,7 @@ syntax on
 "--------------------------------------------------
 set nocompatible
 " keep history
-set history=500
+set history=200
 " autoload after modified
 set autoread
 " unsave file confirm
@@ -171,6 +171,7 @@ inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<CR>"
 "--------------------------------------------------
 " =>  Custom KEY
 "--------------------------------------------------
+" Show/Hide Menus & Toolbars
 map <silent> <F2> :if &guioptions =~# 'T' <Bar>
         \set guioptions-=T <Bar>
         \set guioptions-=m <bar>
@@ -182,7 +183,7 @@ map <silent> <F2> :if &guioptions =~# 'T' <Bar>
 " Edit dos M whitespace
 command! FixdosM e ++ff=dos<CR>
 
-" Full Window
+" Just show one window in Vim
 map <silent> <F11> :only<CR>
 "--------------------------------------------------
 " => Ctags
