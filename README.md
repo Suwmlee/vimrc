@@ -35,11 +35,11 @@ let useYoucompleteme = 0
 ```
 in _.vimrc.plugins_ which you just added in `~/`.
 
-__Attention__: only one autocomplete plugin is available
+__Attention__: Please just choose one autocomplete plugin
 
-All used plugins
+All Plugins
 ----
-| Plugin                          | Description                               |
+| Plugins                         | Description                               |
 | ----                            | ----                                      |
 | Shougo/neocomplete.vim          | autocomplete (need lua)                   |
 | Valloric/YouCompleteMe          | autocomplete (need compiled)              |
@@ -60,15 +60,13 @@ All used plugins
 | iamcco/markdown-preview.vim     | Real-time markdown preview                |
 | kana/vim-smartinput             | deal with pairs of punctuations like '()' |
 | scrooloose/syntastic            | syntax check                              |
-| mattn/emmet-vim                 | html                                      |
-| docunext/closetag.vim           | xml html complete                         |
-| tpope/vim-surround              | html xml ...  cs  repeate                 |
-| pangloss/vim-javascript         | javascript complete                       |
+| sheerun/vim-polyglot            | A solid language pack for Vim             |
+| derekwyatt/vim-scala            | Scala support                             |
 | SirVer/ultisnips                | Snippets                                  |
 | honza/vim-snippets              | useful snippets for vim                   |
 | tpope/vim-fugitive              | git wrapper for vim                       |
 
-Third part extentions
+Third-party Extentions
 ----
 | plugin            | extentions               |
 | ----              | ----                     |
@@ -76,8 +74,8 @@ Third part extentions
 | [vim-devicons][9] | [Nerd-fonts][8]          |
 | [ag.vim][10]      | [The_silver_searcher][7] |
 __Attention__:
-* The default font you can find in _Fonts_ folder
-* Windows version placed in _WindowsExt_ folder
+* You can find default fonts in _Fonts_ folder
+* Windows-version extentions are placed in _WindowsExt_ folder
 
 <a name="compileycm"></a>
 ## Compile YouCompleteMe
@@ -108,10 +106,11 @@ _Studio Version_. Just change the version in the file is valid .
 | F2      | Show/hide menu & toolbar |
 | F7      | Tagbar                   |
 | F8      | NerdTree                 |
-| F11     | Fullwindow               |
+| F11     | Show one buffer/window   |
 | C-a     | Ctrlspace                |
-| C-p     | Ctrlp                    |
 | C-e     | End                      |
+| C-p     | Search Files             |
+| Ag      | Search words             |
 | \\-w    | Move to word             |
 | map     | Show all keymaps         |
 
