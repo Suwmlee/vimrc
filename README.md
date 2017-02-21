@@ -13,7 +13,7 @@ __Attention__: add _variable_ to __PATH__
 #### 3.Install vundle and vimrc
 Use __git__ to download repositories :
 ```sh
-git clone https://github.com/VundleVim/Vundle.vim  ~/.vim/bundle/vundle
+git clone https://github.com/VundleVim/Vundle.vim  ~/.vim/bundle/Vundle.vim
 git clone https://github.com/Suwmlee/vimrc.git  ~/.vim/vimrc
 ```
 #### 4.Repalce vimrc file and PluginInstall
