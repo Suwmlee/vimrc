@@ -1,13 +1,18 @@
 Installation
 ----
 #### 1.Install VIM
-[Install official vim][0]<br />
+[Install official vim][0] or [Compile Vim](https://github.com/vim/vim)
 
 Windows version:<br />
 [micbou-vim][12]  or  [vim-github][13]
 
 #### 2.Install Git
-[Github for windows][1] or [Git][2]<br />
+[Github for windows][1] or [Git][2]
+``` sh
+# Ubuntu
+sudo apt-get update
+sudo apt-get install git-core
+```
 __Attention__: add _variable_ to __PATH__
 
 #### 3.Install vundle and vimrc
@@ -28,21 +33,21 @@ Start vim and type:
 ```
 Default vimrc include __Youcompleteme__. You must compile it before using.
 If you want to compile it , see more information [Compile YouCompleteMe](#compileycm).
-You can also use another plugin __neocomplete.vim__. just set
+You can also use another plugin __neocomplete.vim__. just set in _.vimrc.plugins_
 ```vim
 let useNeocomplete = 1
 let useYoucompleteme = 0
 ```
-in _.vimrc.plugins_ which you just added in `~/`.
-
-__Attention__: Please just choose one autocomplete plugin
+__Attention__:
+* Please just choose one autocomplete plugin
+* Set default browser path for markdown-preview.vim
 
 All Plugins
 ----
 | Plugins                         | Description                               |
 | ----                            | ----                                      |
 | Shougo/neocomplete.vim          | autocomplete (need lua)                   |
-| Valloric/YouCompleteMe          | autocomplete (need compiled)              |
+| Valloric/YouCompleteMe          | autocomplete (need compile)               |
 | vim-colors-solarized            | GUI colorscheme                           |
 | tomasr/molokai                  | Terminal colorscheme                      |
 | vim-airline/vim-airline         | status/tabline                            |
