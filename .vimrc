@@ -114,7 +114,7 @@ set nowrap
 set wildmenu
 "set wildmode=list:longest
 " ignore compiled files
-set wildignore=*.o,*~,*.pyc,*.class,*.swp,*.bak,.svn,.git
+set wildignore=*.o,*~,*.pyc,*.class,*.swp,*.bak,.svn,.git,.vs
 " remember info about open buffers on close"
 set viminfo^=%
 " for regular expressions turn magic on
@@ -287,8 +287,8 @@ if g:useYoucompleteme
     nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
     " load extra conf.py
-    if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-        let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+    if !empty(glob("~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+        let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
     endif
 
     " let g:ycm_key_invoke_completion = '<C-Space>'
